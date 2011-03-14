@@ -1,4 +1,4 @@
-#summary A simple Java Parser that puts the names into a hash..
+#summary A simple Java Parser that puts the names into a hash for efficient lookup.
 
 
 {{{
