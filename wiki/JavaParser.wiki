@@ -28,7 +28,7 @@ Add your content here.
 	    }
 
 	} catch (IOException ex) {
-	    Logger.getLogger(MastersProject.class.getName()).log(Level.SEVERE, null, ex);
+	    Logger.getLogger(ThisClass.class.getName()).log(Level.SEVERE, null, ex);
 	} finally {
 	    try {
 		input.close();
