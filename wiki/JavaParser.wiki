@@ -8,6 +8,8 @@ Add your content here.
 = Details =
 
 {{{
+    public Map<String, String> dimNames = new HashMap<String, String>();
+
     private void loadDiminutiveNames() {
 	BufferedReader input = null;
 
@@ -31,7 +33,7 @@ Add your content here.
 	    try {
 		input.close();
 	    } catch (IOException ex) {
-		Logger.getLogger(MastersProject.class.getName()).log(Level.SEVERE, null, ex);
+		Logger.getLogger(ThisClass.class.getName()).log(Level.SEVERE, null, ex);
 	    }
 	}
     }
