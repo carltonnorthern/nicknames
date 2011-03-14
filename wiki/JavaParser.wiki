@@ -7,7 +7,7 @@ Add your content here.
 
 = Details =
 
-`inline code`
+`
     private void loadDiminutiveNames() {
 	BufferedReader input = null;
 
@@ -35,4 +35,4 @@ Add your content here.
 	    }
 	}
     }
-`inline code`
+`
