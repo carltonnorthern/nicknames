@@ -7,7 +7,7 @@ Add your content here.
 
 = Details =
 
-`
+{{{
     private void loadDiminutiveNames() {
 	BufferedReader input = null;
 
@@ -35,4 +35,4 @@ Add your content here.
 	    }
 	}
     }
-`
+}}}
