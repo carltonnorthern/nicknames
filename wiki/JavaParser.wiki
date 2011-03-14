@@ -1,11 +1,5 @@
-#summary One-sentence summary of this page for efficient lookup.
+#summary A simple Java Parser that puts the names into a hash..
 
-= Introduction =
-
-A simple Java Parser that puts the names into a hash.
-
-
-= Details =
 
 {{{
     public Map<String, String> dimNames = new HashMap<String, String>();
