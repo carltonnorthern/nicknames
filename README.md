@@ -8,4 +8,4 @@ There is some Java code here that can be used to parse the lookup. There is also
 
 This is a relatively large list with about 1600 names. Any help from people to clean this list up and add to it is greatly appreciated. Think of it as a wiki. Just request to join the project and you'll be added.
 
-This project was created by <a href="http://www.odu.edu/">Old Dominion University</a> - <a href="http://ws-dl.blogspot.com/">Web Science and Digital Libraries Research Group</a>. More information about the creation of this lookup can be found here.
+This project was created by <a href="http://www.odu.edu/">Old Dominion University</a> - <a href="http://ws-dl.blogspot.com/">Web Science and Digital Libraries Research Group</a>. More information about the creation of this lookup can be found <a href="http://www.carlton-northern.com/2010/08/lookup-for-nicknames-and-diminutive.html">here</a>.
