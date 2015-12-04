@@ -4,7 +4,7 @@ A CSV file that containing US given names (first name) and their associated nick
 This lookup file was initially created by mining this
 <a href="http://www.tngenweb.org/franklin/frannick.htm">genealogy page</a>. Because the lookup is based off of a dataset used for genealogy purposes there are some old names that aren't used commonly these days, but there are recent ones as well. Examples are "gregory", "greg", or "geoffrey", "geoff". There was also a significant effort to make it machine readable, i.e. separate it with commas, remove human conventions, like "rickie(y)" would need to be made into two different names "rickie", and "ricky".
 
-There is some Java, Perl and Python parsers provided for convenience.
+There are Java, Perl and Python parsers provided for convenience.
 
 This is a relatively large list with about 1600 names. Any help from people to clean this list up and add to it is greatly appreciated. Think of it as a wiki. Just request to join the project and you'll be added.
 
