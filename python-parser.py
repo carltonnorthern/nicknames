@@ -1,6 +1,7 @@
 import collections
 import csv
 import operator
+import functools
 
 class NameDenormalizer(object):
     def __init__(self, filename=None):
@@ -18,7 +19,7 @@ class NameDenormalizer(object):
         name = name.lower()
         if name not in self.lookup:
             raise KeyError(name)
-        names = reduce(operator.or_, self.lookup[name])
+        names = functools.reduce(operator.or_, self.lookup[name])
         if name in names:
             names.remove(name)
         return names
