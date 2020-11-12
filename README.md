@@ -6,6 +6,6 @@ This lookup file was initially created by mining this
 
 There are Java, Perl and Python parsers provided for convenience.
 
-This is a relatively large list with about 1600 names. Any help from people to clean this list up and add to it is greatly appreciated. Think of it as a wiki. Just request to join the project and you'll be added.
+This is a relatively large list with about 1600 names. Any help from people to clean this list up and add to it is greatly appreciated. Think of it as a wiki. Just request to join the project and you'll be added, or submit a pull request.
 
 This project was created by <a href="http://www.odu.edu/">Old Dominion University</a> - <a href="http://ws-dl.blogspot.com/">Web Science and Digital Libraries Research Group</a>. More information about the creation of this lookup can be found <a href="http://www.carlton-northern.com/2010/08/lookup-for-nicknames-and-diminutive.html">here</a>.
