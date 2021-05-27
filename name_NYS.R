@@ -4,11 +4,16 @@ library(stringr)
 library(SwimmeR)
 
 
+Names <- read_csv("names.csv", col_names = FALSE)
+
+Names_List <- unlist(Names)
+
 NYS <- read_csv("NYS_Full_Boys.csv")
+
 
 NYS_Names <- NYS %>% 
   filter(is.na(Name) == FALSE,
-         Meet %!in% c("Hilton 2019", "LISCA 2009")) %>% 
+         Meet %!in% c("Hilton 2019", "LISCA 200", "WayCoTri 2016")) %>% 
   select(Name) %>% 
   unique()
 
@@ -19,7 +24,8 @@ NYS_Names_Comma <- NYS_Names_Comma %>%
   SwimmeR::name_reorder(verbose = TRUE) %>% 
   select(Name, First_Name) %>% 
   mutate(First_Name = str_remove(First_Name, "\\s[:alpha:]$")) %>% 
-  mutate(First_Name = str_to_lower(First_Name))
+  mutate(First_Name = str_to_lower(First_Name),
+         First_Name = str_trim(First_Name))
 
 NYS_Names_To_Add_1 <- NYS_Names_Comma %>%
   filter(First_Name %!in% Names_List) %>%
@@ -206,10 +212,196 @@ NYS_Names_To_Add_1 <- NYS_Names_Comma %>%
       "keit",
       "kelse",
       "kenneth iv",
-      ### through kerri
-      "Madelei",
-      "Meredit"
-    )
+      "kevan",
+      "kj",
+      "konstanti",
+      "kreste",
+      "krzyszof",
+      "kyl",
+      "land",
+      "lawre",
+      "lawrenc",
+      "lee andrew",
+      "ler",
+      "li",
+      "luc andy",
+      "luc yanni",
+      "ma",
+      "mackenz",
+      "madhavan",
+      "madhave",
+      "mah",
+      "makayl",
+      "malikk",
+      "mallyory",
+      "marc an",
+      "margar",
+      "margare",
+      "margue",
+      "mary kate",
+      "masayuk",
+      "mathe",
+      "mathi",
+      "matte",
+      "matth",
+      "matth",
+      "matthews",
+      "mattia",
+      "mattl",
+      "madelei",
+      "maximill",
+      "maximilli",
+      "mcdeid",
+      "mckinle",
+      "megha",
+      "meliss",
+      "meredit",
+      "mi",
+      "michae",
+      "millspaugh",
+      "miller",
+      "h",
+      "min",
+      "mitche",
+      "mj",
+      "mo",
+      "morgam",
+      "na",
+      "nath",
+      "natha",
+      "nathani",
+      "nathanie",
+      "ne",
+      "nevi",
+      "ni",
+      "nich",
+      "nichol",
+      "nj",
+      "no",
+      "noa",
+      "nor",
+      "ntahan",
+      "nzinga",
+      "oad",
+      "one june",
+      "owens",
+      "paig",
+      "panagiot",
+      "park",
+      "partic",
+      "partric",
+      "patienc",
+      "patirck",
+      "patt",
+      "paull",
+      "pelvin",
+      "pembroke",
+      "pen",
+      "penfield",
+      "penn",
+      "pero",
+      "pet",
+      "phill",
+      "philli",
+      "phillp",
+      "peir",
+      "ping ping",
+      "pj",
+      "qui",
+      "raisian",
+      "ran",
+      "rand",
+      "ravas",
+      "read",
+      "rei",
+      "ri",
+      "richa",
+      "richar",
+      "rj",
+      "roa",
+      "rober",
+      "robet",
+      "rong",
+      "rong hang",
+      'rosem',
+      "rut",
+      "ryan phil",
+      "ryamn",
+      "samant",
+      "samanth",
+      "sameeq",
+      "samue",
+      "san",
+      "sang hoon",
+      "sang yum",
+      "santh",
+      "schulyer",
+      "sco",
+      "scootte",
+      "se",
+      "sea",
+      "seaver",
+      "sebastia",
+      "sebastio",
+      "sepncer",
+      "sevastia",
+      "shael issal",
+      "shanno",
+      "shing ru",
+      "simonn",
+      "soph",
+      "spencerport",
+      "stephe",
+      "stepher",
+      "stev",
+      "stevi",
+      "surinde",
+      "ta eh",
+      "tayl",
+      "tayor",
+      "tha",
+      "thaw kler",
+      "tho",
+      "ti",
+      "tiffan",
+      "timmy the bandi",
+      "timot",
+      "timoth",
+      "tin",
+      "tj",
+      "tr",
+      "travi",
+      "trista",
+      "tthimas",
+      "ttroy",
+      "ty",
+      "tyl",
+      "tyler scot",
+      "tzephen",
+      "un",
+      "vah za",
+      "vanroth",
+      "vaughn",
+      "westey",
+      "whitm",
+      "willam",
+      "william darnell",
+      "wiln",
+      "wilny",
+      "woo woo",
+      "yi",
+      "yo",
+      "yong chan",
+      "yoshih",
+      "yoshimit",
+      "zacc",
+      "zacha",
+      "zachar",
+      "zay ko ko",
+      "zei wei"
+      # done
+      
+      )
   ) %>%
   mutate(str_replace(X1, "butter", "butterz")) %>%
   pull(X1)
@@ -220,12 +412,22 @@ write.csv(NYS_Names_To_Add_1, "NYS_Names_To_Add_1.csv")
 NYS_Names_No_Comma <- NYS_Names %>% 
   filter(str_detect(Name, ",") == FALSE)
 
-NYS_Names_No_Comma %>% 
-  mutate(First_Name = case_when(str_count(Name, "\\s") > 2), str_remove_all(Name, ".*"))
+# NYS_Names_To_Add_2 <- NYS_Names_No_Comma %>% 
+#   mutate(First_Name = case_when(str_count(Name, "\\s") > 0 ~ str_remove_all(Name, " .*"),
+#          TRUE ~ Name)) %>%
+#   mutate(First_Name = str_to_lower(First_Name),
+#          First_Name = str_trim(First_Name)) %>% 
+#   select(First_Name) %>% 
+#   unique() %>% 
+#   filter(First_Name %!in% Names_List,
+#          First_Name %!in% NYS_Names_To_Add_1,
+#          str_length(First_Name) > 2,
+#          str_detect(First_Name, "[:punct:]") == FALSE) %>% 
+#   arrange(First_Name)
+# 
+# write.csv(NYS_Names_To_Add_2, "NYS_Names_To_Add_2.csv")
 
-Names <- read_csv("names.csv", col_names = FALSE)
 
-Names_List <- unlist(Names)
 
 names_2 <- bind_rows(Names, NYS_Names_To_Add_1)
 
