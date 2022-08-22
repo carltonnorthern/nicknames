@@ -2,7 +2,7 @@
 A simple CSV file containing US given names (first name) and their associated nicknames or diminutive names.
 
 This lookup file was initially created by mining this
-<a href="http://www.caagri.org/nicknames.html">genealogy page</a>. Because the lookup originates from a dataset used for genealogy purposes there are old names that aren't commonly used these days, but there are recent ones as well. Examples are "gregory", "greg", or "geoffrey", "geoff". There was also a significant effort to make it machine readable, i.e. separate it with commas, remove human conventions, like "rickie(y)" would need to be made into two different names "rickie", and "ricky".
+<a href="http://www.caagri.org/nicknames.html">genealogy page</a>. Because the lookup originates from a dataset used for genealogy purposes there are old names that aren't commonly used these days, but there are recent ones as well. Examples are "gregory", "greg", or "geoffrey", "geoff". There was also a significant effort to make it machine readable, i.e. separate it with commas, remove human conventions like "rickie(y)" would need to be made into two different names "rickie", and "ricky".
 
 There are Java, Perl, Python, and R parsers provided for convenience.
 
