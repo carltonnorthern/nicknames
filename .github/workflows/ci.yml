@@ -1,0 +1,83 @@
+name: CI
+
+on: [push, pull_request]
+
+defaults:
+  run:
+    working-directory: python
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: "3.10"
+      - name: Install Hatch
+        run: pip install --upgrade hatch
+      - name: flake8
+        run: hatch run flake8
+      - name: black
+        if: always()
+        run: hatch run black
+      - name: isort
+        if: always()
+        run: hatch run isort
+
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, macos-latest, ubuntu-latest]
+        python-version: [3.7, 3.8, 3.9, "3.10"]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install Hatch
+        run: pip install --upgrade hatch
+      - name: pytest
+        run: hatch run test
+
+  build:
+    name: Build wheels and sdist
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+      - name: Install Hatch
+        run: pip install --upgrade hatch
+      - name: Build sdist and wheel
+        run: hatch build
+      - uses: actions/upload-artifact@v2
+        with:
+          name: artifacts
+          path: python/dist/* # Path must be relative to repo root, not CWD
+          if-no-files-found: error
+
+  publish:
+    needs: [lint, test, build]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: artifacts
+          path: dist
+      - name: Push build artifacts to test PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          skip_existing: true
+          user: __token__
+          password: ${{ secrets.TEST_PYPI_API_TOKEN }}
+          repository_url: https://test.pypi.org/legacy/
+      - name: Push build artifacts to prod PyPI
+        if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          skip_existing: true
+          user: __token__
+          password: ${{ secrets.PYPI_API_TOKEN }}

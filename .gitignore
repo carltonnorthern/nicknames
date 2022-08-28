@@ -1,0 +1,3 @@
+# The data file in the root is copied into the src directory during build.
+python/**/names.csv
+python/dist
