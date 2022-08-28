@@ -59,8 +59,23 @@ jobs:
           path: python/dist/* # Path must be relative to repo root, not CWD
           if-no-files-found: error
 
+  data:
+    name: Check data
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: "."
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+      - name: Test that data is normalized
+        run: |
+          python normalize.py -i names.csv -o normed.csv
+          diff -u names.csv normed.csv
+          exit $?
+
   publish:
-    needs: [lint, test, build]
+    needs: [lint, test, build, data]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v2
