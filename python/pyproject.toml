@@ -1,0 +1,43 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "us-nicknames"
+dynamic = ["version"]
+authors = [
+  { name="Carlton Northern" },
+]
+description = "Hand-curated list of US given names and nicknames"
+readme = "../README.md"
+license = { file="../License.txt" }
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/carltonnorthern/nickname-and-diminutive-names-lookup"
+"Bug Tracker" = "https://github.com/carltonnorthern/nickname-and-diminutive-names-lookup/issues"
+
+[tool.hatch.version]
+path = "src/us_nicknames/_version.py"
+
+[tool.hatch.envs.default]
+dependencies = [
+  "black",
+  "flake8",
+  "isort",
+  "pytest",
+]
+
+[tool.hatch.envs.default.scripts]
+flake8 = "python -m flake8 --max-line-length=88 ."
+black = "python -m black --check ."
+isort = "python -m isort --check-only --diff ."
+test = "pytest"
+
+# Instructs hatch to call hatch_build.py during build step
+[tool.hatch.build.hooks.custom]
