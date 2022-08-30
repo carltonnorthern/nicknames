@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 name = "us-nicknames"
 dynamic = ["version"]
 authors = [
-  { name="Carlton Northern" },
+  { name="Carlton Northern", email="carlton.northern@gmail.com" },
 ]
 description = "Hand-curated list of US given names and nicknames"
 readme = "../README.md"
