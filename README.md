@@ -21,30 +21,38 @@ pip install us-nicknames
 and then you can do:
 
 ```python
-from us_nicknames import NameDenormalizer
+from us_nicknames import NickNamer
 
-# Either use the included names.csv
-denormer = NameDenormalizer()
-# Or create from your own dataset
-mapping = {
-    "alex": {"alexa", "alexander"},
-    "alexa": {"alex"},
-    "alexander": {"alex"},
-}
-# denormer = NameDenormalizer("my_names.csv")
-# denormer = NameDenormalizer.from_file(io.StringIO("alex,alexander"))
+nn = NickNamer()
 
-# Lookup a name. Return a set of strings. Note that the original name is not included.
-assert denormer["aaron"] == {"ron", "erin", "ronnie"}
-# Lookup is not case sensitive. Results are always lowercase.
-assert denormer["AARON"] == {"ron", "erin", "ronnie"}
+# Get the nicknames for a given name as a set of strings
+nicks = nn.nicknames_of("Alexander")
+assert isinstance(nicks, set)
+assert "al" in nicks
+assert "alex" in nicks
 
-# Lookup on a missing name raises KeyError
-try:
-    denormer["missing"]
-except KeyError:
-    pass
-# Use `.get` to handle missing names, like dict.get()
-assert denormer.get("missing") is None
-assert denormer.get("missing", "oops") == "oops"
+# Note that the relationship isn't symmetric: al is a nickname for alexander,
+# but alexander is not a nickname for al.
+assert "alexander" not in nn.nicknames_of("al")
+
+# Capitalization is ignored and leading and trailing whitespace is ignored
+assert nn.nicknames_of("alexander") == nn.nicknames_of(" ALEXANDER ")
+
+# Queries that aren't found return an empty set
+assert nn.nicknames_of("not a name") == set()
+
+# The other useful thing is to go the other way, nickname to canonical:
+# It acts very similarly to nicknames_of.
+can = nn.canonicals_of("al")
+assert isinstance(can, set)
+assert "alexander" in can
+assert "alex" in can
+
+assert "al" not in nn.canonicals_of("alexander")
+
+# You can combine these to see if two names are interchangeable:
+union = nn.nicknames_of("al") | nn.canonicals_of("al")
+are_interchangeable = "alexander" in union
 ```
+
+For more advanced usage, such as loading your own data, read the source code.
