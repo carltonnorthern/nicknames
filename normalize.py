@@ -1,13 +1,16 @@
-"""Tool to ensure that the CSV data is normalized.
+"""Tool to normalize a CSV file.
+
+The first name in each line is the canonical name. The rest of the names in that
+line are nicknames for the canonical name.
 
 "Normalized" means:
 
 - All names are lowercase
+- All names have no leading or trailing whitespace
+- A line has at least 2 names, one canonical and at least one nickname
 - A name doesn't appear in a line more than once
 - There are no repeated lines
 - All lines are sorted by the first name in the line
-- No line is a subset of another line (eg alex,alexa is redundant if we already
-  have alex,alexa,alexander)
 """
 from __future__ import annotations
 
@@ -29,36 +32,20 @@ def write_lines(path: str, lines: Iterable[Iterable[str]]):
         writer.writerows(lines)
 
 
-def _is_subset_of_others(line: set, others: Iterable[set[str]]):
-    for other in others:
-        if line == other:
-            continue
-        if line.issubset(other):
-            return True
-    return False
+def normalize(lines: Iterable[Iterable[str]]) -> list[list[str]]:
+    check_integrity(lines)
+    lines = [[norm_name(name) for name in line] for line in lines]
+    lines = [drop_duplicates(line) for line in lines]
+    lines = unique_lines(lines)
+    lines = sort_lines(lines)
+    return lines
 
 
-def remove_subsets(lines: Iterable[Iterable[str]]):
-    """Remove lines that are subsets of other lines.
-
-    For instance, if we have
-
-    alex,alexa,alexander
-    alex,alexa
-
-    then we can remove the second line, since the first line already says that
-    alex and alexa are interchangaable.
-
-    This is a naive O(n^2) search, but we aren't dealing with many names."""
-    line_sets = [set(line) for line in lines]
-    return [
-        line
-        for line, line_set in zip(lines, line_sets)
-        if not _is_subset_of_others(line_set, line_sets)
-    ]
+def norm_name(name: str) -> str:
+    return name.lower().strip()
 
 
-def unique(line: Iterable[str]):
+def drop_duplicates(line: Iterable[str]):
     """Get a list of unique elements in a list, preserving order."""
     return list(dict.fromkeys(line))
 
@@ -67,7 +54,8 @@ def unique_lines(lines: Iterable[list[str]]):
     seen = set()
     result = []
     for line in lines:
-        key = frozenset(line)
+        canonical, nicknames = line[0], line[1:]
+        key = (canonical, frozenset(nicknames))
         if key in seen:
             continue
         seen.add(key)
@@ -75,12 +63,15 @@ def unique_lines(lines: Iterable[list[str]]):
     return result
 
 
-def normalize(lines: Iterable[Iterable[str]]) -> list[list[str]]:
-    lines = [[name.lower() for name in line] for line in lines]
-    lines = [unique(line) for line in lines]
-    lines = unique_lines(lines)
-    lines = remove_subsets(lines)
-    lines = list(sorted(lines, key=lambda line: line[0]))
+def check_integrity(lines: Iterable[Iterable[str]]):
+    for line in lines:
+        if len(line) < 2:
+            raise ValueError(f"Line {line} has less than 2 elements")
+
+
+def sort_lines(lines: Iterable[Iterable[str]]) -> list[list[str]]:
+    lines = list(lines)
+    lines.sort(key=lambda line: line[0])
     return lines
 
 
