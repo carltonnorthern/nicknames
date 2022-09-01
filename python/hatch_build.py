@@ -12,7 +12,7 @@ most of the supported workflows assume that the data files live INSIDE the pytho
 package. But in our case, we want to keep the data file at the root so the other
 languages can share it.
 
-If the data file was inside the package, it would be quite
+If the data file were inside the package, it would be quite
 simple:
 [tool.hatch.build.force-include]
 "src/data" = "mypackage/data"
