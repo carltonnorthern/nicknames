@@ -8,7 +8,7 @@ dynamic = ["version"]
 authors = [
   { name="Carlton Northern", email="carlton.northern@gmail.com" },
 ]
-description = "Hand-curated list of US given names and nicknames"
+description = "Hand-curated dataset of English given names and nicknames"
 readme = "../README.md"
 license = { file="../License.txt" }
 requires-python = ">=3.7"
