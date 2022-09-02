@@ -7,8 +7,6 @@ from typing import Dict, Iterable, Set, Union
 
 from nicknames._version import __version__  # noqa: F401
 
-DEFAULT_NICKNAME_RESOURCE = path(__package__, "names.csv")
-
 _LookupTable = Dict[str, Set[str]]
 _PathLike = Union[str, Path]
 
@@ -33,15 +31,15 @@ class NickNamer:
         """
         if canonical_lookup is None:
             if nickname_lookup is None:
-                nickname_lookup = _lookup_nicknames_default()
-            nickname_lookup = _clean_lookup(nickname_lookup)
+                nickname_lookup = default_lookup()
+            nickname_lookup = self._normalize_lookup(nickname_lookup)
             canonical_lookup = _inverted(nickname_lookup)
         else:
-            canonical_lookup = _clean_lookup(canonical_lookup)
+            canonical_lookup = self._normalize_lookup(canonical_lookup)
             if nickname_lookup is None:
                 nickname_lookup = _inverted(canonical_lookup)
             else:
-                nickname_lookup = _clean_lookup(nickname_lookup)
+                nickname_lookup = self._normalize_lookup(nickname_lookup)
         self._nickname_lookup = nickname_lookup
         self._canonical_lookup = canonical_lookup
 
@@ -75,15 +73,6 @@ class NickNamer:
         """
         return self._get(name, self._canonical_lookup)
 
-    @staticmethod
-    def _get(name: str, lookup: _LookupTable):
-        name = name.lower().strip()
-        try:
-            result = lookup[name]
-        except KeyError:
-            return set()
-        return result.copy()
-
     @classmethod
     def from_lines(cls, lines: Iterable[Iterable[str]]) -> NickNamer:
         """Load from an iterable of lines, where each line is an iterable of names.
@@ -115,9 +104,38 @@ class NickNamer:
         nickname_lookup = _lookup_from_csv(path, reader_kwargs=reader_kwargs)
         return cls(nickname_lookup=nickname_lookup)
 
+    def _get(self, name: str, lookup: _LookupTable):
+        name = self._normalize_name(name)
+        try:
+            result = lookup[name]
+        except KeyError:
+            return set()
+        return result.copy()
 
-def _lookup_nicknames_default() -> _LookupTable:
-    with DEFAULT_NICKNAME_RESOURCE as f:
+    def _normalize_name(self, name: str) -> str:
+        """Override this in a subclass to change how names are normalized."""
+        return name.lower().strip()
+
+    def _normalize_lookup(self, lookup: _LookupTable) -> _LookupTable:
+        return {
+            self._normalize_name(k): {self._normalize_name(v) for v in vs}
+            for k, vs in lookup.items()
+        }
+
+
+def default_lookup() -> dict[str, set[str]]:
+    """Returns the default lookup table, mapping canonical names to sets of nicknames.
+
+    All names are lowercase and have no leading or trailing whitespace.
+
+    You could use this to tweak the default lookup table:
+
+    >>> lookup = default_nicknames_lookup()
+    >>> del lookup["alexander]
+    >>> nn = NickNamer(nickname_lookup=lookup)
+    >>> assert nn.nicknames_of("alexander") == set()
+    """
+    with path(__package__, "names.csv") as f:
         return _lookup_from_csv(f)
 
 
@@ -149,11 +167,3 @@ def _inverted(lookup: _LookupTable) -> _LookupTable:
         for new_key in v:
             inverted.setdefault(new_key, set()).add(k)
     return inverted
-
-
-def _clean(name: str) -> str:
-    return name.lower().strip()
-
-
-def _clean_lookup(lookup: _LookupTable) -> _LookupTable:
-    return {_clean(k): {_clean(v) for v in vs} for k, vs in lookup.items()}
