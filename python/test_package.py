@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from nicknames import NickNamer
+from nicknames import NickNamer, default_lookup
 
 
 @pytest.fixture
@@ -144,3 +144,26 @@ def test_default_load():
     assert len(denormer._canonical_lookup) > 0
     assert isinstance(denormer._canonical_lookup, dict)
     assert "nick" in denormer.nicknames_of("nicholas")
+
+
+def test_default_load_twice():
+    # Test for https://github.com/carltonnorthern/nicknames/issues/46
+    NickNamer()
+    NickNamer()
+
+
+def test_default_lookup():
+    lookup = default_lookup()
+    assert isinstance(lookup, dict)
+    assert len(lookup) > 0
+    assert "nick" in lookup["nicholas"]
+    assert "nick" not in lookup
+
+
+def test_default_lookup_copied():
+    # Check that the default lookup is not modified
+    lookup = default_lookup()
+    lookup_original = lookup.copy()
+    lookup.clear()
+    lookup2 = default_lookup()
+    assert lookup2 == lookup_original

@@ -7,8 +7,6 @@ from typing import Dict, Iterable, Set, Union
 
 from nicknames._version import __version__  # noqa: F401
 
-DEFAULT_NICKNAME_RESOURCE = path(__package__, "names.csv")
-
 _LookupTable = Dict[str, Set[str]]
 _PathLike = Union[str, Path]
 
@@ -33,7 +31,7 @@ class NickNamer:
         """
         if canonical_lookup is None:
             if nickname_lookup is None:
-                nickname_lookup = _lookup_nicknames_default()
+                nickname_lookup = default_lookup()
             nickname_lookup = _clean_lookup(nickname_lookup)
             canonical_lookup = _inverted(nickname_lookup)
         else:
@@ -116,8 +114,19 @@ class NickNamer:
         return cls(nickname_lookup=nickname_lookup)
 
 
-def _lookup_nicknames_default() -> _LookupTable:
-    with DEFAULT_NICKNAME_RESOURCE as f:
+def default_lookup() -> dict[str, set[str]]:
+    """Returns the default lookup table, mapping canonical names to sets of nicknames.
+
+    All names are lowercase and have no leading or trailing whitespace.
+
+    You could use this to tweak the default lookup table:
+
+    >>> lookup = default_nicknames_lookup()
+    >>> del lookup["alexander]
+    >>> nn = NickNamer(nickname_lookup=lookup)
+    >>> assert nn.nicknames_of("alexander") == set()
+    """
+    with path(__package__, "names.csv") as f:
         return _lookup_from_csv(f)
 
 
