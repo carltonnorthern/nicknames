@@ -1,4 +1,5 @@
-# nickname-and-diminutive-names-lookup
+# Nicknames
+
 A hand-curated CSV file containing English given names (first name) and their associated nicknames or diminutive names.
 
 There are Java, Perl, Python, and R parsers provided for convenience.
@@ -14,13 +15,13 @@ This project was created by [Old Dominion University](https://www.odu.edu/) - [W
 The Python parser is available on PyPI from
 
 ```bash
-pip install us-nicknames
+pip install nicknames
 ```
 
 and then you can do:
 
 ```python
-from us_nicknames import NickNamer
+from nicknames import NickNamer
 
 nn = NickNamer()
 

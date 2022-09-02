@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from us_nicknames import NickNamer
+from nicknames import NickNamer
 
 
 @pytest.fixture
