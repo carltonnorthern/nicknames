@@ -1,14 +1,28 @@
 # Nicknames
 
-A hand-curated CSV file containing English given names (first name) and their associated nicknames or diminutive names.
+A hand-curated CSV file containing English given names (first names) and
+their associated nicknames.
 
 There are Java, Perl, Python, and R parsers provided for convenience.
 
-This is a relatively large list with roughly 1600 names. Any help from people to clean this list up and add to it is greatly appreciated.
+This is a relatively large list with roughly 1600 names. Any help from
+people to clean this list up and add to it is greatly appreciated.
+The first name in a line is the canonical name, and the rest are nicknames
+for that name.
 
-This lookup file was initially created by mining this [genealogy page](https://www.caagri.org/nicknames.html). Because the lookup originates from a dataset used for genealogy purposes there are old names that aren't commonly used these days, but there are recent ones as well. Examples are "gregory", "greg", or "geoffrey", "geoff". There was also a significant effort to make it machine readable, i.e. separate it with commas, remove human conventions like "rickie(y)" would need to be made into two different names "rickie", and "ricky".
+This lookup file was initially created by mining this
+[genealogy page](https://www.caagri.org/nicknames.html).
+Because the lookup originates from a dataset used for genealogy purposes there
+are old names that aren't commonly used these days, but there are recent ones
+as well. Examples are "gregory", "greg", or "geoffrey", "geoff". There was also
+a significant effort to make it machine readable, i.e. separate it with commas,
+remove human conventions like "rickie(y)" would need to be made into two
+different names "rickie", and "ricky".
 
-This project was created by [Old Dominion University](https://www.odu.edu/) - [Web Science and Digital Libraries Research Group](http://ws-dl.blogspot.com/). More information about the creation of this lookup can be found on this [blog post about the creation of this library](https://ws-dl.blogspot.com/2010/08/lookup-for-nicknames-and-diminutive.html)
+This project was created by [Old Dominion University](https://www.odu.edu/) -
+[Web Science and Digital Libraries Research Group](http://ws-dl.blogspot.com/).
+More information about the creation of this lookup can be found on this
+[blog post about the creation of this library](https://ws-dl.blogspot.com/2010/08/lookup-for-nicknames-and-diminutive.html)
 
 ## Python API
 
