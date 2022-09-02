@@ -19,8 +19,8 @@ classifiers = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/carltonnorthern/nickname-and-diminutive-names-lookup"
-"Bug Tracker" = "https://github.com/carltonnorthern/nickname-and-diminutive-names-lookup/issues"
+"Homepage" = "https://github.com/carltonnorthern/nicknames"
+"Bug Tracker" = "https://github.com/carltonnorthern/nicknames/issues"
 
 [tool.hatch.version]
 path = "src/nicknames/_version.py"
