@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "us-nicknames"
+name = "nicknames"
 dynamic = ["version"]
 authors = [
   { name="Carlton Northern", email="carlton.northern@gmail.com" },
@@ -23,7 +23,7 @@ classifiers = [
 "Bug Tracker" = "https://github.com/carltonnorthern/nickname-and-diminutive-names-lookup/issues"
 
 [tool.hatch.version]
-path = "src/us_nicknames/_version.py"
+path = "src/nicknames/_version.py"
 
 [tool.hatch.envs.default]
 dependencies = [

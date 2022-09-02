@@ -5,7 +5,7 @@ from importlib.resources import path
 from pathlib import Path
 from typing import Dict, Iterable, Set, Union
 
-from us_nicknames._version import __version__  # noqa: F401
+from nicknames._version import __version__  # noqa: F401
 
 DEFAULT_NICKNAME_RESOURCE = path(__package__, "names.csv")
 
