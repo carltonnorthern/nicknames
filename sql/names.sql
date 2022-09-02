@@ -1,5 +1,6 @@
 -- This creation script should work in most flavors of SQL.
--- Logically, canonical_name is a primary key although no constraint or index is included.create table nicknames (
+-- Logically, canonical_name is a primary key although no constraint or index is included.
+create table nicknames (
   canonical_name varchar(255),
   nickname_1 varchar(255),
   nickname_2 varchar(255),

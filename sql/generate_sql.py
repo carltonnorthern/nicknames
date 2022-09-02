@@ -2,9 +2,9 @@ import csv
 
 # The script must be run from the main project directory
 NICKNAME_RESOURCE = "./names.csv"
-NAMES_SQL = "names.sql"
+NAMES_SQL = "./sql/names.sql"
 NAMES_TABLE = "nicknames"
-NAMES_NORMALIZED_SQL = "names_normalized.sql"
+NAMES_NORMALIZED_SQL = "./sql/names_normalized.sql"
 NAMES_NORMALIZED_TABLE = "nicknames_normalized"
 
 
@@ -54,14 +54,14 @@ def generate_normalized_insert(canonical_name: str, nickname: str):
     insert_sql = f"insert into {NAMES_NORMALIZED_TABLE} "
     insert_sql += "(canonical_name, nickname) values "
     insert_sql += f"('{canonical_name}', '{nickname}');\n"
-    return
+    return insert_sql
 
 
 def write_nicknames_sql(create_sql: str, insert_sql: str):
     with open(NAMES_SQL, "w") as f:
         f.write("-- This creation script should work in most flavors of SQL.\n")
         f.write(
-            "-- Logically, canonical_name is a primary key although no constraint or index is included."  # noqa: E501
+            "-- Logically, canonical_name is a primary key although no constraint or index is included.\n"  # noqa: E501
         )
         f.write(create_sql)
         f.write(
