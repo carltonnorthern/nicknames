@@ -47,9 +47,7 @@ def main():
     write_nicknames_sql(create_sql, insert_sql)
 
     create_normalized_sql = generate_create_normalized_table_sql()
-    write_nicknames_normalized_sql(
-        create_normalized_sql, insert_normalized_sql
-    )
+    write_nicknames_normalized_sql(create_normalized_sql, insert_normalized_sql)
 
 
 # Normalized insert always includes exactly 2 fields
@@ -61,19 +59,27 @@ def generate_normalized_insert(canonical_name: str, nickname: str):
 
 
 def write_nicknames_sql(create_sql: str, insert_sql: str):
-    with open(NAMES_SQL, 'w') as f:
-        f.write("-- This creation script should work in most flavors of SQL.\n")  # noqa: E501
-        f.write("-- Logically, canonical_name is a primary key although no constraint or index is included.")  # noqa: E501
+    with open(NAMES_SQL, "w") as f:
+        f.write("-- This creation script should work in most flavors of SQL.\n")
+        f.write(
+            "-- Logically, canonical_name is a primary key although no constraint or index is included."  # noqa: E501
+        )
         f.write(create_sql)
-        f.write("\n-- These insert statements are verbose, but they could not be simpler to use.\n")  # noqa: E501
+        f.write(
+            "\n-- These insert statements are verbose, but they could not be simpler to use.\n"  # noqa: E501
+        )
         f.write(insert_sql)
 
 
 def write_nicknames_normalized_sql(create_sql: str, insert_sql: str):
-    with open(NAMES_NORMALIZED_SQL, 'w') as f:
-        f.write("-- This creation script should work in most flavors of SQL.\n")  # noqa: E501
+    with open(NAMES_NORMALIZED_SQL, "w") as f:
+        f.write(
+            "-- This creation script should work in most flavors of SQL.\n"  # noqa: E501
+        )
         f.write(create_sql)
-        f.write("\n-- These insert statements are verbose, but they could not be simpler to use.\n")  # noqa: E501
+        f.write(
+            "\n-- These insert statements are verbose, but they could not be simpler to use.\n"  # noqa: E501
+        )
         f.write(insert_sql)
 
 
