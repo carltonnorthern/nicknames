@@ -31,44 +31,53 @@ def main():
                 elif 0 < idx < nickname_count:
                     field_names += f"nickname_{idx}, "
                     field_values += f"'{row[idx]}', "
-                    insert_normalized_sql += generate_normalized_insert(row[0], row[idx])
+                    insert_normalized_sql += generate_normalized_insert(
+                        row[0], row[idx]
+                    )
                 else:
                     field_names += f"nickname_{idx}"
                     field_values += f"'{row[idx]}'"
-                    insert_normalized_sql += generate_normalized_insert(row[0], row[idx])
-            insert_sql += f"insert into {NAMES_TABLE} (" + field_names + ") values (" + field_values + ");\n"
-
+                    insert_normalized_sql += generate_normalized_insert(
+                        row[0], row[idx]
+                    )
+            insert_sql += f"insert into {NAMES_TABLE} ("
+            insert_sql += field_names + ") values (" + field_values + ");\n"
 
     create_sql = generate_create_table_sql(max_nicknames)
     write_nicknames_sql(create_sql, insert_sql)
 
     create_normalized_sql = generate_create_normalized_table_sql()
-    write_nicknames_normalized_sql(create_normalized_sql, insert_normalized_sql)
+    write_nicknames_normalized_sql(
+        create_normalized_sql, insert_normalized_sql
+    )
 
 
 # Normalized insert always includes exactly 2 fields
 def generate_normalized_insert(canonical_name: str, nickname: str):
-    return f"insert into {NAMES_NORMALIZED_TABLE} (canonical_name, nickname) values ('{canonical_name}', '{nickname}');\n"
+    insert_sql = f"insert into {NAMES_NORMALIZED_TABLE} "
+    insert_sql += "(canonical_name, nickname) values "
+    insert_sql += f"('{canonical_name}', '{nickname}');\n"
+    return
 
 
 def write_nicknames_sql(create_sql: str, insert_sql: str):
     with open(NAMES_SQL, 'w') as f:
-        f.write("-- This creation script should work in most flavors of SQL.\n")
-        f.write("-- Logically, canonical_name is a primary key although no constraint or index is included.")
+        f.write("-- This creation script should work in most flavors of SQL.\n")  # noqa: E501
+        f.write("-- Logically, canonical_name is a primary key although no constraint or index is included.")  # noqa: E501
         f.write(create_sql)
-        f.write("\n-- These insert statements are verbose, but they could not be simpler to use.\n")
+        f.write("\n-- These insert statements are verbose, but they could not be simpler to use.\n")  # noqa: E501
         f.write(insert_sql)
 
 
 def write_nicknames_normalized_sql(create_sql: str, insert_sql: str):
     with open(NAMES_NORMALIZED_SQL, 'w') as f:
-        f.write("-- This creation script should work in most flavors of SQL.\n")
+        f.write("-- This creation script should work in most flavors of SQL.\n")  # noqa: E501
         f.write(create_sql)
-        f.write("\n-- These insert statements are verbose, but they could not be simpler to use.\n")
+        f.write("\n-- These insert statements are verbose, but they could not be simpler to use.\n")  # noqa: E501
         f.write(insert_sql)
 
 
-# table creation SQL [for non-normalized data] 
+# table creation SQL [for non-normalized data]
 # depends only on the maximum number of nicknames
 def generate_create_table_sql(nick_name_count: int):
     create_table_sql = f"create table {NAMES_TABLE} (\n"
@@ -85,7 +94,8 @@ def generate_create_table_sql(nick_name_count: int):
 # table creation SQL for normalized data is 100% static
 def generate_create_normalized_table_sql():
     create_table_sql = f"create table {NAMES_NORMALIZED_TABLE} (\n"
-    create_table_sql += "  canonical_name varchar(255),\n  nickname varchar(255)\n);\n"
+    create_table_sql += "  canonical_name varchar(255),\n"
+    create_table_sql += "  nickname varchar(255)\n);\n"
     return create_table_sql
 
 
