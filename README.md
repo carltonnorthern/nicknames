@@ -1,3 +1,5 @@
+[![CI](https://github.com/carltonnorthern/nicknames/actions/workflows/ci.yml/badge.svg)](https://github.com/carltonnorthern/nicknames/actions/workflows/ci.yml)
+
 # Nicknames
 
 A hand-curated CSV file containing English given names (first names) and
