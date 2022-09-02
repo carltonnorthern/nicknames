@@ -1,6 +1,5 @@
 import csv
 
-
 # The script must be run from the main project directory
 NICKNAME_RESOURCE = "./names.csv"
 NAMES_SQL = "names.sql"
