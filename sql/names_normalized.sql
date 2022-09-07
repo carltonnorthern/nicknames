@@ -3,7 +3,6 @@ create table nicknames_normalized (
   canonical_name varchar(255),
   nickname varchar(255)
 );
-
 -- These insert statements are verbose, but they could not be simpler to use.
 insert into nicknames_normalized (canonical_name, nickname) values ('aaron', 'erin');
 insert into nicknames_normalized (canonical_name, nickname) values ('aaron', 'ronnie');

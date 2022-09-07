@@ -1,125 +1,154 @@
+from __future__ import annotations
+
+import argparse
 import csv
+import sys
+from pathlib import Path
+from typing import Iterable
 
-# The script must be run from the main project directory
-NICKNAME_RESOURCE = "./names.csv"
-NAMES_SQL = "./sql/names.sql"
-NAMES_TABLE = "nicknames"
-NAMES_NORMALIZED_SQL = "./sql/names_normalized.sql"
-NAMES_NORMALIZED_TABLE = "nicknames_normalized"
+_THIS_DIR = Path(__file__).parent
 
 
-def main():
-    with open(NICKNAME_RESOURCE) as f:
+def main(argv: list[str]):
+    args = parse_argv(argv)
+    repo_root = _THIS_DIR.parent
+    max_nicknames, rows = read_csv(repo_root / "names.csv")
+    builders: dict[str, list[BaseBuilder]] = {
+        "nicknames": [NicknamesBuilder(args.output)],
+        "normalized": [NormalizedBuilder(args.output)],
+    }
+    builders["all"] = builders["nicknames"] + builders["normalized"]
+    for builder in builders[args.type]:
+        builder.build(max_nicknames, rows)
+
+
+def parse_argv(argv: list[str]) -> argparse.Namespace:
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--type",
+        choices=["nicknames", "normalized", "all"],
+        help="The type of SQL to generate",
+        default="all",
+    )
+    parser.add_argument(
+        "-o",
+        "--output",
+        type=Path,
+        help="The file to write the SQL to. Defaults are per-type.",
+        default=None,
+    )
+    args = parser.parse_args(argv)
+    if args.type == "all" and args.output is not None:
+        raise ValueError("Cannot specify '--output' with '--type=all'")
+    return args
+
+
+def read_csv(file_name: str) -> tuple[int, list[list[str]]]:
+    with open(file_name) as f:
         r = csv.reader(f)
-        max_nicknames = 0
-
-        # Build the normalized inserts while iterating over nicknames
-        # Build the basic inserts one level higher (one for each row)
-        insert_sql = ""
-        insert_normalized_sql = ""
-        for row in r:
-            nickname_count = len(row) - 1
-            if nickname_count > max_nicknames:
-                max_nicknames = nickname_count
-            field_names = ""
-            field_values = ""
-            for idx in range(len(row)):
-                if idx == 0:
-                    field_names += "canonical_name, "
-                    field_values += f"'{row[0]}', "
-                elif 0 < idx < nickname_count:
-                    field_names += f"nickname_{idx}, "
-                    field_values += f"'{row[idx]}', "
-                    insert_normalized_sql += generate_normalized_insert(
-                        row[0], row[idx]
-                    )
-                else:
-                    field_names += f"nickname_{idx}"
-                    field_values += f"'{row[idx]}'"
-                    insert_normalized_sql += generate_normalized_insert(
-                        row[0], row[idx]
-                    )
-            insert_sql += f"insert into {NAMES_TABLE} ("
-            insert_sql += field_names + ") values (" + field_values + ");\n"
-
-    create_sql = generate_create_table_sql(max_nicknames)
-    write_nicknames_sql(create_sql, insert_sql)
-
-    create_normalized_sql = generate_create_normalized_table_sql()
-    write_nicknames_normalized_sql(create_normalized_sql, insert_normalized_sql)
+        rows = [row for row in r]
+    max_nicknames = max(len(row) for row in rows) - 1
+    return max_nicknames, rows
 
 
-# Normalized insert always includes exactly 2 fields
-def generate_normalized_insert(canonical_name: str, nickname: str):
-    insert_sql = f"insert into {NAMES_NORMALIZED_TABLE} "
-    insert_sql += "(canonical_name, nickname) values "
-    insert_sql += f"('{canonical_name}', '{nickname}');\n"
-    return insert_sql
+class BaseBuilder:
+    DEFAULT_OUT_PATH: Path
+    table_name: str
+    template: str
+
+    def __init__(self, out_path: Path | None = None):
+        if out_path is None:
+            out_path = self.DEFAULT_OUT_PATH
+        self.output_file = Path(out_path)
+
+    def build(self, max_nicknames: int, rows: list[list[str]]):
+        sql = self._make_sql(max_nicknames, rows)
+        self.output_file.parent.mkdir(parents=True, exist_ok=True)
+        self.output_file.write_text(sql)
+
+    def _make_sql(self, max_nicknames: int, rows: list[list[str]]) -> str:
+        create_statement = self._create_statement(max_nicknames)
+        insert_statements = self._insert_statements(rows)
+        return self.template.format(
+            create_statement=create_statement,
+            insert_statements=insert_statements,
+        )
+
+    def _create_statement(self, max_nicknames: int) -> str:
+        raise NotImplementedError
+
+    def _insert_statements(self, rows: list[list[str]]) -> str:
+        raise NotImplementedError
+
+    def _format_insert_statement(self, fields: list[str], values: list[str]) -> str:
+        quoted_values = [f"'{v}'" for v in values]
+        v = ", ".join(quoted_values)
+        f = ", ".join(fields)
+        return f"insert into {self.table_name} ({f}) values ({v});"
 
 
-NICKNAMES_TEMPLATE = """\
+class NicknamesBuilder(BaseBuilder):
+    DEFAULT_OUT_PATH = _THIS_DIR / "names.sql"
+    table_name = "nicknames"
+    template = """\
 -- This creation script should work in most flavors of SQL.
 -- Logically, canonical_name is a primary key although no
 -- constraint or index is included.
 {create_statement}
 -- These insert statements are verbose, but they could not be simpler to use.
-{insert_statements}\
+{insert_statements}
 """
 
+    def _create_statement(self, max_nicknames: int) -> str:
+        sql = f"create table {self.table_name} (\n"
+        sql += "  canonical_name varchar(255),\n"
+        for i in range(max_nicknames):
+            sql += f"  nickname_{i+1} varchar(255)"
+            if i < max_nicknames - 1:
+                sql += ","
+            sql += "\n"
+        sql += ");"
+        return sql
 
-NICKNAMES_NORMLIZED_TEMPLATE = """\
+    def _insert_statements(self, rows: list[list[str]]) -> str:
+        return "\n".join(self._one_row_insert_statement(row) for row in rows)
+
+    def _one_row_insert_statement(self, row: list[str]) -> str:
+        n_nicknames = len(row) - 1
+        field_names = ["canonical_name"] + [
+            f"nickname_{i+1}" for i in range(n_nicknames)
+        ]
+        return self._format_insert_statement(field_names, row)
+
+
+class NormalizedBuilder(BaseBuilder):
+    DEFAULT_OUT_PATH = _THIS_DIR / "names_normalized.sql"
+    table_name = "nicknames_normalized"
+    template = """\
 -- This creation script should work in most flavors of SQL.
 {create_statement}
 -- These insert statements are verbose, but they could not be simpler to use.
-{insert_statements}\
+{insert_statements}
 """
 
+    def _create_statement(self, max_nicknames: int) -> str:
+        return f"""\
+create table {self.table_name} (
+  canonical_name varchar(255),
+  nickname varchar(255)
+);"""
 
-def write_nicknames_sql(create_statement: str, insert_statements: str):
-    _format_and_write(
-        NICKNAMES_TEMPLATE,
-        NAMES_SQL,
-        create_statement=create_statement,
-        insert_statements=insert_statements,
-    )
+    def _insert_statements(self, rows: list[list[str]]) -> str:
+        statements = (s for row in rows for s in self._one_row_insert_statements(row))
+        return "\n".join(statements)
 
-
-def write_nicknames_normalized_sql(create_statement: str, insert_statements: str):
-    _format_and_write(
-        NICKNAMES_NORMLIZED_TEMPLATE,
-        NAMES_NORMALIZED_SQL,
-        create_statement=create_statement,
-        insert_statements=insert_statements,
-    )
-
-
-def _format_and_write(template: str, file_name: str, **kwargs):
-    formatted = template.format(**kwargs)
-    with open(file_name, "w") as f:
-        f.write(formatted)
-
-
-# table creation SQL [for non-normalized data]
-# depends only on the maximum number of nicknames
-def generate_create_table_sql(nick_name_count: int):
-    create_table_sql = f"create table {NAMES_TABLE} (\n"
-    create_table_sql += "  canonical_name varchar(255),\n"
-    for i in range(nick_name_count):
-        create_table_sql += f"  nickname_{i+1} varchar(255)"
-        if i < nick_name_count - 1:
-            create_table_sql += ","
-        create_table_sql += "\n"
-    create_table_sql += ");\n"
-    return create_table_sql
-
-
-# table creation SQL for normalized data is 100% static
-def generate_create_normalized_table_sql():
-    create_table_sql = f"create table {NAMES_NORMALIZED_TABLE} (\n"
-    create_table_sql += "  canonical_name varchar(255),\n"
-    create_table_sql += "  nickname varchar(255)\n);\n"
-    return create_table_sql
+    def _one_row_insert_statements(self, row: list[str]) -> Iterable[str]:
+        canonical, *nicknames = row
+        fields = ["canonical_name", "nickname"]
+        for nickname in nicknames:
+            vals = [canonical, nickname]
+            yield self._format_insert_statement(fields, vals)
 
 
 if __name__ == "__main__":
-    main()
+    main(sys.argv[1:])
