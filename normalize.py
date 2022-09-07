@@ -15,7 +15,6 @@ line are nicknames for the canonical name.
 from __future__ import annotations
 
 import argparse
-
 import csv
 import sys
 from typing import Iterable

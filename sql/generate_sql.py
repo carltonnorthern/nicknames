@@ -57,29 +57,46 @@ def generate_normalized_insert(canonical_name: str, nickname: str):
     return insert_sql
 
 
-def write_nicknames_sql(create_sql: str, insert_sql: str):
-    with open(NAMES_SQL, "w") as f:
-        f.write("-- This creation script should work in most flavors of SQL.\n")
-        f.write(
-            "-- Logically, canonical_name is a primary key although no constraint or index is included.\n"  # noqa: E501
-        )
-        f.write(create_sql)
-        f.write(
-            "\n-- These insert statements are verbose, but they could not be simpler to use.\n"  # noqa: E501
-        )
-        f.write(insert_sql)
+NICKNAMES_TEMPLATE = """\
+-- This creation script should work in most flavors of SQL.
+-- Logically, canonical_name is a primary key although no
+-- constraint or index is included.
+{create_statement}
+-- These insert statements are verbose, but they could not be simpler to use.
+{insert_statements}\
+"""
 
 
-def write_nicknames_normalized_sql(create_sql: str, insert_sql: str):
-    with open(NAMES_NORMALIZED_SQL, "w") as f:
-        f.write(
-            "-- This creation script should work in most flavors of SQL.\n"  # noqa: E501
-        )
-        f.write(create_sql)
-        f.write(
-            "\n-- These insert statements are verbose, but they could not be simpler to use.\n"  # noqa: E501
-        )
-        f.write(insert_sql)
+NICKNAMES_NORMLIZED_TEMPLATE = """\
+-- This creation script should work in most flavors of SQL.
+{create_statement}
+-- These insert statements are verbose, but they could not be simpler to use.
+{insert_statements}\
+"""
+
+
+def write_nicknames_sql(create_statement: str, insert_statements: str):
+    _format_and_write(
+        NICKNAMES_TEMPLATE,
+        NAMES_SQL,
+        create_statement=create_statement,
+        insert_statements=insert_statements,
+    )
+
+
+def write_nicknames_normalized_sql(create_statement: str, insert_statements: str):
+    _format_and_write(
+        NICKNAMES_NORMLIZED_TEMPLATE,
+        NAMES_NORMALIZED_SQL,
+        create_statement=create_statement,
+        insert_statements=insert_statements,
+    )
+
+
+def _format_and_write(template: str, file_name: str, **kwargs):
+    formatted = template.format(**kwargs)
+    with open(file_name, "w") as f:
+        f.write(formatted)
 
 
 # table creation SQL [for non-normalized data]
