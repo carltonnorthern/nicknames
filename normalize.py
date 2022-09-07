@@ -15,9 +15,12 @@ line are nicknames for the canonical name.
 from __future__ import annotations
 
 import argparse
+from pathlib import Path
 import csv
 import sys
 from typing import Iterable
+
+_THIS_DIR = Path(__file__).parent
 
 
 def read_lines(path: str):
@@ -77,13 +80,13 @@ def sort_lines(lines: Iterable[Iterable[str]]) -> list[list[str]]:
 def parse_args(argv):
     parser = argparse.ArgumentParser(description="Normalize names.csv")
     parser.add_argument(
-        "-i", "--input", help="Path to input CSV file", default="names.csv"
+        "-i", "--input", help="Path to input CSV file", default=_THIS_DIR / "names.csv"
     )
     parser.add_argument(
         "-o",
         "--output",
         help="Path to output CSV file",
-        default="names.csv",
+        default=_THIS_DIR / "names.csv",
     )
     return parser.parse_args(argv)
 
