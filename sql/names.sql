@@ -1092,10 +1092,11 @@ insert into nicknames (canonical_name, nickname_1, nickname_2) values ('yeona', 
 insert into nicknames (canonical_name, nickname_1) values ('yoshihiko', 'yoshi');
 insert into nicknames (canonical_name, nickname_1, nickname_2) values ('yulan', 'lan', 'yul');
 insert into nicknames (canonical_name, nickname_1) values ('yvonne', 'vonna');
-insert into nicknames (canonical_name, nickname_1) values ('zach', 'zachariah');
+insert into nicknames (canonical_name, nickname_1, nickname_2) values ('zach', 'zack', 'zak');
 insert into nicknames (canonical_name, nickname_1, nickname_2, nickname_3, nickname_4, nickname_5, nickname_6, nickname_7) values ('zachariah', 'zachy', 'zach', 'zeke', 'zac', 'zack', 'zak', 'zakk');
 insert into nicknames (canonical_name, nickname_1, nickname_2, nickname_3, nickname_4, nickname_5, nickname_6, nickname_7) values ('zachary', 'zachy', 'zach', 'zeke', 'zac', 'zack', 'zak', 'zakk');
 insert into nicknames (canonical_name, nickname_1, nickname_2, nickname_3, nickname_4, nickname_5, nickname_6, nickname_7) values ('zachery', 'zachy', 'zach', 'zeke', 'zac', 'zack', 'zak', 'zakk');
+insert into nicknames (canonical_name, nickname_1, nickname_2) values ('zack', 'zach', 'zak');
 insert into nicknames (canonical_name, nickname_1) values ('zebedee', 'zeb');
 insert into nicknames (canonical_name, nickname_1, nickname_2, nickname_3) values ('zedediah', 'dyer', 'zed', 'diah');
 insert into nicknames (canonical_name, nickname_1) values ('zephaniah', 'zeph');
