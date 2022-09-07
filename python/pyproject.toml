@@ -39,6 +39,7 @@ flake8 = "python -m flake8 --max-line-length=88 .."
 black = "python -m black --check .."
 isort = "python -m isort --check-only --diff .."
 test = "pytest"
+sync = "python ../normalize.py && python ../sql/generate_sql.py"
 
 # Instructs hatch to call hatch_build.py during build step
 [tool.hatch.build.hooks.custom]
