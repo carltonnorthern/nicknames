@@ -15,9 +15,9 @@ line are nicknames for the canonical name.
 from __future__ import annotations
 
 import argparse
-from pathlib import Path
 import csv
 import sys
+from pathlib import Path
 from typing import Iterable
 
 _THIS_DIR = Path(__file__).parent
