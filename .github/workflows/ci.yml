@@ -93,6 +93,8 @@ jobs:
           exit $?
 
   publish:
+    #  Don't do this on forks, it will fail because secrets are not available
+    if: github.repository_owner == 'carltonnorthern'
     needs: [lint, test, build, data]
     runs-on: ubuntu-latest
     steps:
