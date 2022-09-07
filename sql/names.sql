@@ -19,7 +19,6 @@ create table nicknames (
   nickname_14 varchar(255),
   nickname_15 varchar(255)
 );
-
 -- These insert statements are verbose, but they could not be simpler to use.
 insert into nicknames (canonical_name, nickname_1, nickname_2, nickname_3) values ('aaron', 'erin', 'ronnie', 'ron');
 insert into nicknames (canonical_name, nickname_1, nickname_2, nickname_3, nickname_4, nickname_5) values ('abbigail', 'nabby', 'abby', 'gail', 'abbi', 'abbey');
