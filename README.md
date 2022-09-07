@@ -5,7 +5,7 @@
 A hand-curated CSV file containing English given names (first names) and
 their associated nicknames.
 
-There are Java, Perl, Python, and R parsers provided for convenience.
+There are Python, SQL, Java, Perl, and R parsers provided for convenience.
 
 This is a relatively large list with roughly 1600 names. Any help from
 people to clean this list up and add to it is greatly appreciated.
