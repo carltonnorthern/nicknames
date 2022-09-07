@@ -1,4 +1,5 @@
 [![CI](https://github.com/carltonnorthern/nicknames/actions/workflows/ci.yml/badge.svg)](https://github.com/carltonnorthern/nicknames/actions/workflows/ci.yml)
+[![PyPI version](https://badge.fury.io/py/nicknames.svg)](https://badge.fury.io/py/nicknames)
 
 # Nicknames
 
