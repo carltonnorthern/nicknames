@@ -73,6 +73,18 @@ jobs:
           python normalize.py -i names.csv -o normed.csv
           diff -u names.csv normed.csv
           exit $?
+      - name: Test that SQL data is up to date - normalized
+        if: always()
+        run: |
+          python sql/generate_sql.py  --type normalized --output normed.sql
+          diff -u normed.sql sql/names_normalized.sql
+          exit $?
+      - name: Test that SQL data is up to date - nicknames
+        if: always()
+        run: |
+          python sql/generate_sql.py  --type nicknames --output nicknames.sql
+          diff -u nicknames.sql sql/names.sql
+          exit $?
 
   publish:
     needs: [lint, test, build, data]
