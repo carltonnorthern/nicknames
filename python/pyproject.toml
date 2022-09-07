@@ -34,9 +34,10 @@ dependencies = [
 ]
 
 [tool.hatch.envs.default.scripts]
-flake8 = "python -m flake8 --max-line-length=88 ."
-black = "python -m black --check ."
-isort = "python -m isort --check-only --diff ."
+# Run these in the repo root to get ALL python files
+flake8 = "python -m flake8 --max-line-length=88 .."
+black = "python -m black --check .."
+isort = "python -m isort --check-only --diff .."
 test = "pytest"
 
 # Instructs hatch to call hatch_build.py during build step
