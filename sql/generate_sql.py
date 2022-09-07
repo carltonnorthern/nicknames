@@ -1,3 +1,4 @@
+"""Script to auto-generate SQL scripts from the canonical CSV file."""
 from __future__ import annotations
 
 import argparse
