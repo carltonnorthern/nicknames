@@ -10,16 +10,22 @@ from typing import Iterable
 _THIS_DIR = Path(__file__).parent
 
 
-def main(argv: list[str]):
+def cli(argv: list[str]):
     args = parse_argv(argv)
+    generate_sql(args.type, args.output)
+
+
+def generate_sql(typ: str = "all", out_path: Path | None = None):
+    if typ == "all" and out_path is not None:
+        raise ValueError("Cannot specify '--output' with '--type=all'")
     repo_root = _THIS_DIR.parent
     max_nicknames, rows = read_csv(repo_root / "names.csv")
     builders: dict[str, list[BaseBuilder]] = {
-        "nicknames": [NicknamesBuilder(args.output)],
-        "normalized": [NormalizedBuilder(args.output)],
+        "nicknames": [NicknamesBuilder(out_path)],
+        "normalized": [NormalizedBuilder(out_path)],
     }
     builders["all"] = builders["nicknames"] + builders["normalized"]
-    for builder in builders[args.type]:
+    for builder in builders[typ]:
         builder.build(max_nicknames, rows)
 
 
@@ -152,4 +158,4 @@ create table {self.table_name} (
 
 
 if __name__ == "__main__":
-    main(sys.argv[1:])
+    cli(sys.argv[1:])
