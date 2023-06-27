@@ -1095,6 +1095,7 @@ insert into nicknames_normalized (canonical_name, nickname) values ('jacob', 'ja
 insert into nicknames_normalized (canonical_name, nickname) values ('jacobus', 'jacob');
 insert into nicknames_normalized (canonical_name, nickname) values ('jacqueline', 'jackie');
 insert into nicknames_normalized (canonical_name, nickname) values ('jacqueline', 'jack');
+insert into nicknames_normalized (canonical_name, nickname) values ('jacqueline', 'jacqui');
 insert into nicknames_normalized (canonical_name, nickname) values ('jahoda', 'hody');
 insert into nicknames_normalized (canonical_name, nickname) values ('jahoda', 'hodie');
 insert into nicknames_normalized (canonical_name, nickname) values ('jahoda', 'hoda');
