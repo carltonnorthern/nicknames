@@ -523,7 +523,7 @@ insert into nicknames (canonical_name, nickname_1) values ('ivan', 'john');
 insert into nicknames (canonical_name, nickname_1) values ('jackson', 'jack');
 insert into nicknames (canonical_name, nickname_1, nickname_2, nickname_3) values ('jacob', 'jaap', 'jake', 'jay');
 insert into nicknames (canonical_name, nickname_1) values ('jacobus', 'jacob');
-insert into nicknames (canonical_name, nickname_1, nickname_2) values ('jacqueline', 'jackie', 'jack');
+insert into nicknames (canonical_name, nickname_1, nickname_2, nickname_3) values ('jacqueline', 'jackie', 'jack', 'jacqui');
 insert into nicknames (canonical_name, nickname_1, nickname_2, nickname_3) values ('jahoda', 'hody', 'hodie', 'hoda');
 insert into nicknames (canonical_name, nickname_1) values ('jakob', 'jake');
 insert into nicknames (canonical_name, nickname_1, nickname_2, nickname_3, nickname_4, nickname_5) values ('james', 'jimmy', 'jim', 'jamie', 'jimmie', 'jem');
