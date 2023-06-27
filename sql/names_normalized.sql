@@ -968,9 +968,16 @@ insert into nicknames_normalized (canonical_name, nickname) values ('hannah', 'n
 insert into nicknames_normalized (canonical_name, nickname) values ('hannah', 'anna');
 insert into nicknames_normalized (canonical_name, nickname) values ('harold', 'hal');
 insert into nicknames_normalized (canonical_name, nickname) values ('harold', 'harry');
+insert into nicknames_normalized (canonical_name, nickname) values ('harold', 'hap');
+insert into nicknames_normalized (canonical_name, nickname) values ('harold', 'haps');
 insert into nicknames_normalized (canonical_name, nickname) values ('harriet', 'hattie');
+insert into nicknames_normalized (canonical_name, nickname) values ('harrison', 'harry');
+insert into nicknames_normalized (canonical_name, nickname) values ('harrison', 'hap');
+insert into nicknames_normalized (canonical_name, nickname) values ('harrison', 'haps');
 insert into nicknames_normalized (canonical_name, nickname) values ('harry', 'harold');
 insert into nicknames_normalized (canonical_name, nickname) values ('harry', 'henry');
+insert into nicknames_normalized (canonical_name, nickname) values ('harry', 'hap');
+insert into nicknames_normalized (canonical_name, nickname) values ('harry', 'haps');
 insert into nicknames_normalized (canonical_name, nickname) values ('haseltine', 'hassie');
 insert into nicknames_normalized (canonical_name, nickname) values ('heather', 'hetty');
 insert into nicknames_normalized (canonical_name, nickname) values ('helen', 'lena');
@@ -1000,6 +1007,8 @@ insert into nicknames_normalized (canonical_name, nickname) values ('henrietta',
 insert into nicknames_normalized (canonical_name, nickname) values ('henry', 'hank');
 insert into nicknames_normalized (canonical_name, nickname) values ('henry', 'hal');
 insert into nicknames_normalized (canonical_name, nickname) values ('henry', 'harry');
+insert into nicknames_normalized (canonical_name, nickname) values ('henry', 'hap');
+insert into nicknames_normalized (canonical_name, nickname) values ('henry', 'haps');
 insert into nicknames_normalized (canonical_name, nickname) values ('hephsibah', 'hipsie');
 insert into nicknames_normalized (canonical_name, nickname) values ('hepsibah', 'hipsie');
 insert into nicknames_normalized (canonical_name, nickname) values ('herbert', 'bert');
