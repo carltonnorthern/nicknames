@@ -85,10 +85,9 @@ jobs:
         # exit early if there are no changes
         run: |
           git add .
-          git diff-index --quiet HEAD || exit 0
+          git diff-index --quiet HEAD || git commit -m "${{ env.CI_COMMIT_MESSAGE }}"
           git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
           git config --global user.email "username@users.noreply.github.com"
-          git commit -a -m "${{ env.CI_COMMIT_MESSAGE }}"
           git push
 
   publish:
