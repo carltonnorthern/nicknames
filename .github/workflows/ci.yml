@@ -66,31 +66,30 @@ jobs:
           if-no-files-found: error
 
   data:
-    name: Check data
+    name: Normalize, regenerate, and push data
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: "."
+    env:
+      CI_COMMIT_MESSAGE: "chore: normalize data and re-sync"
+      CI_COMMIT_AUTHOR: CI Bot
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
-      - name: Test that data is normalized
-        run: |
-          python normalize.py -i names.csv -o normed.csv
-          diff -u names.csv normed.csv
-          exit $?
+      - name: Normalize the .csv
+        run: python normalize.py
       - name: Test that SQL data is up to date - normalized
-        if: always()
+        run: python sql/generate_sql.py
+      - name: Commit and push changes
+        # exit early if there are no changes
         run: |
-          python sql/generate_sql.py  --type normalized --output normed.sql
-          diff -u normed.sql sql/names_normalized.sql
-          exit $?
-      - name: Test that SQL data is up to date - nicknames
-        if: always()
-        run: |
-          python sql/generate_sql.py  --type nicknames --output nicknames.sql
-          diff -u nicknames.sql sql/names.sql
-          exit $?
+          git add .
+          git diff-index --quiet HEAD || exit 0
+          git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
+          git config --global user.email "username@users.noreply.github.com"
+          git commit -a -m "${{ env.CI_COMMIT_MESSAGE }}"
+          git push
 
   publish:
     #  Don't do this on forks, it will fail because secrets are not available
