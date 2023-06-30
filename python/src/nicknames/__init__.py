@@ -1,11 +1,11 @@
 from __future__ import annotations
 
 import csv
-from importlib.resources import path
 from pathlib import Path
 from typing import Dict, Iterable, Set, Union
 
 from nicknames._version import __version__  # noqa: F401
+from nicknames._compat import load_resource
 
 _LookupTable = Dict[str, Set[str]]
 _PathLike = Union[str, Path]
@@ -135,7 +135,7 @@ def default_lookup() -> dict[str, set[str]]:
     >>> nn = NickNamer(nickname_lookup=lookup)
     >>> assert nn.nicknames_of("alexander") == set()
     """
-    with path(__package__, "names.csv") as f:
+    with load_resource(__package__, "names.csv") as f:
         return _lookup_from_csv(f)
 
 
