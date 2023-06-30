@@ -40,18 +40,23 @@ path = "src/nicknames/_version.py"
 [tool.hatch.envs.default]
 dependencies = [
   "black",
-  "flake8",
-  "isort",
   "pytest",
+  "ruff",
 ]
 
 [tool.hatch.envs.default.scripts]
 # Run these in the repo root to get ALL python files
-flake8 = "python -m flake8 --max-line-length=88 .."
-black = "python -m black --check .."
-isort = "python -m isort --check-only --diff .."
+lint = "python -m black --check .. && python -m ruff .."
+fmt = "python -m black .. && python -m ruff --fix .."
 test = "pytest"
 sync = "python ../normalize.py && python ../sql/generate_sql.py"
 
 # Instructs hatch to call hatch_build.py during build step
 [tool.hatch.build.hooks.custom]
+
+[tool.ruff]
+select = [
+  "E",  # pyflakes
+  "F",  # pyflakes
+  "I",  # isort
+]
