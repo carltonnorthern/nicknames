@@ -77,6 +77,8 @@ jobs:
       - name: Test that SQL data is up to date - normalized
         run: python sql/generate_sql.py
       - name: Commit and push changes
+        # Don't do this on tags
+        if: ${{ !startsWith(github.event.ref, 'refs/tags') }}
         # exit early if there are no changes
         run: |
           git add .
