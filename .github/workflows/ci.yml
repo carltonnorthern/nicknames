@@ -22,14 +22,9 @@ jobs:
           python-version: "3.11"
       - name: Install Hatch
         run: pip install --upgrade hatch
-      - name: flake8
-        run: hatch run flake8
-      - name: black
-        if: always()
-        run: hatch run black
-      - name: isort
-        if: always()
-        run: hatch run isort
+      - name: lint
+        run: hatch run lint
+
 
   test:
     runs-on: ${{ matrix.os }}
