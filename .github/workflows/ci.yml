@@ -42,7 +42,7 @@ jobs:
       - name: Install Hatch
         run: pip install --upgrade hatch
       - name: pytest
-        run: hatch run test
+        run: hatch run test-CI
 
   build:
     name: Build wheels and sdist

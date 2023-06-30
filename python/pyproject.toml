@@ -49,6 +49,7 @@ dependencies = [
 lint = "python -m black --check .. && python -m ruff .."
 fmt = "python -m black .. && python -m ruff --fix .."
 test = "pytest"
+test-CI = "pytest -Werror"
 sync = "python ../normalize.py && python ../sql/generate_sql.py"
 
 # Instructs hatch to call hatch_build.py during build step
