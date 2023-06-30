@@ -4,8 +4,8 @@ import csv
 from pathlib import Path
 from typing import Dict, Iterable, Set, Union
 
-from nicknames._version import __version__  # noqa: F401
 from nicknames._compat import load_resource
+from nicknames._version import __version__ as __version__
 
 _LookupTable = Dict[str, Set[str]]
 _PathLike = Union[str, Path]
