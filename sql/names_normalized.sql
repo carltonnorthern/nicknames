@@ -164,6 +164,8 @@ insert into nicknames_normalized (canonical_name, nickname) values ('andre', 'dr
 insert into nicknames_normalized (canonical_name, nickname) values ('andrea', 'drea');
 insert into nicknames_normalized (canonical_name, nickname) values ('andrea', 'rea');
 insert into nicknames_normalized (canonical_name, nickname) values ('andrea', 'andrew');
+insert into nicknames_normalized (canonical_name, nickname) values ('andrea', 'andi');
+insert into nicknames_normalized (canonical_name, nickname) values ('andrea', 'andy');
 insert into nicknames_normalized (canonical_name, nickname) values ('andrew', 'andy');
 insert into nicknames_normalized (canonical_name, nickname) values ('andrew', 'drew');
 insert into nicknames_normalized (canonical_name, nickname) values ('andriane', 'ada');

@@ -93,7 +93,7 @@ insert into nicknames (canonical_name, nickname_1) values ('amos', 'moses');
 insert into nicknames (canonical_name, nickname_1, nickname_2) values ('anastasia', 'ana', 'stacy');
 insert into nicknames (canonical_name, nickname_1) values ('anderson', 'andy');
 insert into nicknames (canonical_name, nickname_1) values ('andre', 'drea');
-insert into nicknames (canonical_name, nickname_1, nickname_2, nickname_3) values ('andrea', 'drea', 'rea', 'andrew');
+insert into nicknames (canonical_name, nickname_1, nickname_2, nickname_3, nickname_4, nickname_5) values ('andrea', 'drea', 'rea', 'andrew', 'andi', 'andy');
 insert into nicknames (canonical_name, nickname_1, nickname_2) values ('andrew', 'andy', 'drew');
 insert into nicknames (canonical_name, nickname_1, nickname_2, nickname_3) values ('andriane', 'ada', 'adri', 'rienne');
 insert into nicknames (canonical_name, nickname_1, nickname_2) values ('angela', 'angel', 'angie');
