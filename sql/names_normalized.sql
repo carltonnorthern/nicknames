@@ -1873,6 +1873,7 @@ insert into nicknames_normalized (canonical_name, nickname) values ('patricia', 
 insert into nicknames_normalized (canonical_name, nickname) values ('patricia', 'patsy');
 insert into nicknames_normalized (canonical_name, nickname) values ('patricia', 'patty');
 insert into nicknames_normalized (canonical_name, nickname) values ('patricia', 'patti');
+insert into nicknames_normalized (canonical_name, nickname) values ('patricia', 'trish');
 insert into nicknames_normalized (canonical_name, nickname) values ('patrick', 'pate');
 insert into nicknames_normalized (canonical_name, nickname) values ('patrick', 'peter');
 insert into nicknames_normalized (canonical_name, nickname) values ('patrick', 'pat');
@@ -1986,6 +1987,7 @@ insert into nicknames_normalized (canonical_name, nickname) values ('roberta', '
 insert into nicknames_normalized (canonical_name, nickname) values ('roberta', 'bobbie');
 insert into nicknames_normalized (canonical_name, nickname) values ('roberta', 'birdie');
 insert into nicknames_normalized (canonical_name, nickname) values ('roberta', 'bertie');
+insert into nicknames_normalized (canonical_name, nickname) values ('roberta', 'roby');
 insert into nicknames_normalized (canonical_name, nickname) values ('roderick', 'rod');
 insert into nicknames_normalized (canonical_name, nickname) values ('roderick', 'erick');
 insert into nicknames_normalized (canonical_name, nickname) values ('roderick', 'rickie');
