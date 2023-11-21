@@ -39,15 +39,14 @@ path = "src/nicknames/_version.py"
 
 [tool.hatch.envs.default]
 dependencies = [
-  "black",
   "pytest",
-  "ruff",
+  "ruff>=0.1.6",
 ]
 
 [tool.hatch.envs.default.scripts]
 # Run these in the repo root to get ALL python files
-lint = "python -m black --check .. && python -m ruff .."
-fmt = "python -m black .. && python -m ruff --fix .."
+lint = "python -m ruff format --check .. && python -m ruff .."
+fmt = "python -m ruff --fix .. && python -m ruff format .."
 test = "pytest"
 test-CI = "pytest -Werror"
 sync = "python ../normalize.py && python ../sql/generate_sql.py"
