@@ -12,6 +12,9 @@ jobs:
         # Since we only make pure python wheels and source,
         # we only need to build on one platform.
         runs-on: ubuntu-latest
+        permissions:
+            # Needed for trusted publishing to PyPI
+            id-token: write
         steps:
             - uses: actions/checkout@v2
             - uses: actions/setup-python@v2
@@ -19,9 +22,8 @@ jobs:
               run: pip install --upgrade hatch
             - name: Build sdist and wheel
               run: hatch build
-            - name: Push build artifacts to prod PyPI
+            - name: Push build artifacts to PyPI
               uses: pypa/gh-action-pypi-publish@release/v1
               with:
                 skip-existing: true
-                user: __token__
-                password: ${{ secrets.PYPI_API_TOKEN }}
+                packages-dir: python/dist
