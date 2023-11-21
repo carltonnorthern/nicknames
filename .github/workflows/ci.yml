@@ -44,22 +44,6 @@ jobs:
       - name: pytest
         run: hatch run test-CI
 
-  build:
-    name: Build wheels and sdist
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
-      - name: Install Hatch
-        run: pip install --upgrade hatch
-      - name: Build sdist and wheel
-        run: hatch build
-      - uses: actions/upload-artifact@v2
-        with:
-          name: artifacts
-          path: python/dist/* # Path must be relative to repo root, not CWD
-          if-no-files-found: error
-
   data:
     name: Normalize, regenerate, and push data
     runs-on: ubuntu-latest
@@ -84,28 +68,3 @@ jobs:
           # short-circuit if we have no changes, otherwise attempt to commit and push
           # should only fail on forks, in which case contributors will need to manually run black, commit, and push
           git diff-index --quiet HEAD || (echo "Attempting to commit changes" && git commit -am '${{ env.CI_COMMIT_MESSAGE }}' && git push -f)
-
-  publish:
-    #  Don't do this on forks, it will fail because secrets are not available
-    if: github.repository_owner == 'carltonnorthern'
-    needs: [lint, test, build, data]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/download-artifact@v2
-        with:
-          name: artifacts
-          path: dist
-      - name: Push build artifacts to test PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          skip-existing: true
-          user: __token__
-          password: ${{ secrets.TEST_PYPI_API_TOKEN }}
-          repository-url: https://test.pypi.org/legacy/
-      - name: Push build artifacts to prod PyPI
-        if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          skip-existing: true
-          user: __token__
-          password: ${{ secrets.PYPI_API_TOKEN }}

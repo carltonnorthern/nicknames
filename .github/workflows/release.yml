@@ -1,0 +1,27 @@
+name: release
+
+on:
+    workflow_dispatch:
+
+defaults:
+    run:
+        working-directory: python
+
+jobs:
+    build-and-release:
+        # Since we only make pure python wheels and source,
+        # we only need to build on one platform.
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: actions/setup-python@v2
+            - name: Install Hatch
+              run: pip install --upgrade hatch
+            - name: Build sdist and wheel
+              run: hatch build
+            - name: Push build artifacts to prod PyPI
+              uses: pypa/gh-action-pypi-publish@release/v1
+              with:
+                skip-existing: true
+                user: __token__
+                password: ${{ secrets.PYPI_API_TOKEN }}
