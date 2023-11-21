@@ -67,4 +67,4 @@ jobs:
           git config user.email "$(git log -n 1 --pretty=format:%ae)"
           # short-circuit if we have no changes, otherwise attempt to commit and push
           # should only fail on forks, in which case contributors will need to manually format, commit, and push
-          git diff-index --quiet HEAD || (echo "Attempting to commit changes" && git commit -am '${{ env.CI_COMMIT_MESSAGE }}' && git push -f)
+          git diff-index --quiet HEAD || (echo "Committing changes" && git commit -am '${{ env.CI_COMMIT_MESSAGE }}' && echo "Pushing changes" && git push -f)
