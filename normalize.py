@@ -18,7 +18,7 @@ import argparse
 import csv
 import sys
 from pathlib import Path
-from typing import Iterable
+from typing import Iterable, Sequence
 
 _THIS_DIR = Path(__file__).parent
 
@@ -35,12 +35,27 @@ def write_lines(path: str, lines: Iterable[Iterable[str]]):
 
 
 def normalize(lines: Iterable[Iterable[str]]) -> list[list[str]]:
-    check_integrity(lines)
-    lines = [[norm_name(name) for name in line] for line in lines]
-    lines = [drop_duplicates(line) for line in lines]
+    lines = (list(line) for line in lines)
+    lines = (line for line in lines if len(line))
+    lines = ([norm_name(name) for name in line] for line in lines)
+    lines = merge_lines(lines)
+    lines = check_integrity(lines)
+    lines = (drop_duplicates(line) for line in lines)
     lines = unique_lines(lines)
     lines = sort_lines(lines)
     return lines
+
+
+def merge_lines(lines: Iterable[Iterable[str]]) -> list[list[str]]:
+    """if more than one line has the same canonical name, merge them into one."""
+    m = {}
+    for line in lines:
+        canonical, nicknames = line[0], line[1:]
+        if canonical in m:
+            m[canonical].extend(nicknames)
+        else:
+            m[canonical] = list(nicknames)
+    return [[canonical, *nicknames] for canonical, nicknames in m.items()]
 
 
 def norm_name(name: str) -> str:
@@ -52,7 +67,7 @@ def drop_duplicates(line: Iterable[str]):
     return list(dict.fromkeys(line))
 
 
-def unique_lines(lines: Iterable[list[str]]):
+def unique_lines(lines: Iterable[Sequence[str]]):
     seen = set()
     result = []
     for line in lines:
@@ -65,10 +80,11 @@ def unique_lines(lines: Iterable[list[str]]):
     return result
 
 
-def check_integrity(lines: Iterable[Iterable[str]]):
-    for line in lines:
+def check_integrity(lines: Iterable[Sequence[str]]) -> Iterable[Sequence[str]]:
+    for i, line in enumerate(lines):
         if len(line) < 2:
-            raise ValueError(f"Line {line} has less than 2 elements")
+            raise ValueError(f"Line  {i} ({line}) has less than 2 elements")
+        yield line
 
 
 def sort_lines(lines: Iterable[Iterable[str]]) -> list[list[str]]:
