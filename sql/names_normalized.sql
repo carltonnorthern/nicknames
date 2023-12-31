@@ -2067,9 +2067,12 @@ insert into nicknames_normalized (canonical_name, nickname) values ('philinda', 
 insert into nicknames_normalized (canonical_name, nickname) values ('philinda', 'lynn');
 insert into nicknames_normalized (canonical_name, nickname) values ('philinda', 'lindy');
 insert into nicknames_normalized (canonical_name, nickname) values ('philip', 'phil');
+insert into nicknames_normalized (canonical_name, nickname) values ('philip', 'pip');
 insert into nicknames_normalized (canonical_name, nickname) values ('philipina', 'phoebe');
 insert into nicknames_normalized (canonical_name, nickname) values ('philipina', 'penie');
+insert into nicknames_normalized (canonical_name, nickname) values ('philipina', 'pip');
 insert into nicknames_normalized (canonical_name, nickname) values ('phillip', 'phil');
+insert into nicknames_normalized (canonical_name, nickname) values ('phillip', 'pip');
 insert into nicknames_normalized (canonical_name, nickname) values ('philly', 'delphia');
 insert into nicknames_normalized (canonical_name, nickname) values ('philomena', 'menaalmena');
 insert into nicknames_normalized (canonical_name, nickname) values ('phoebe', 'fifi');

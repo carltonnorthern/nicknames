@@ -907,9 +907,9 @@ insert into nicknames (canonical_name, nickname_1) values ('philadelphia', 'delp
 insert into nicknames (canonical_name, nickname_1) values ('philander', 'fie');
 insert into nicknames (canonical_name, nickname_1, nickname_2) values ('philetus', 'leet', 'phil');
 insert into nicknames (canonical_name, nickname_1, nickname_2, nickname_3) values ('philinda', 'linda', 'lynn', 'lindy');
-insert into nicknames (canonical_name, nickname_1) values ('philip', 'phil');
-insert into nicknames (canonical_name, nickname_1, nickname_2) values ('philipina', 'phoebe', 'penie');
-insert into nicknames (canonical_name, nickname_1) values ('phillip', 'phil');
+insert into nicknames (canonical_name, nickname_1, nickname_2) values ('philip', 'phil', 'pip');
+insert into nicknames (canonical_name, nickname_1, nickname_2, nickname_3) values ('philipina', 'phoebe', 'penie', 'pip');
+insert into nicknames (canonical_name, nickname_1, nickname_2) values ('phillip', 'phil', 'pip');
 insert into nicknames (canonical_name, nickname_1) values ('philly', 'delphia');
 insert into nicknames (canonical_name, nickname_1) values ('philomena', 'menaalmena');
 insert into nicknames (canonical_name, nickname_1) values ('phoebe', 'fifi');
