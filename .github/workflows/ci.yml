@@ -60,11 +60,10 @@ jobs:
       - name: Test that SQL data is up to date - normalized
         run: python sql/generate_sql.py
       - name: Commit and push changes
-        # Don't do this on tags
-        if: ${{ !startsWith(github.event.ref, 'refs/tags') }}
+        # Don't do this on tags or forks
+        if: ${{ !startsWith(github.event.ref, 'refs/tags') && github.repository == 'carltonnorthern/nicknames'}}
         run: |
           git config user.name "$(git log -n 1 --pretty=format:%an)"
           git config user.email "$(git log -n 1 --pretty=format:%ae)"
           # short-circuit if we have no changes, otherwise attempt to commit and push
-          # should only fail on forks, in which case contributors will need to manually format, commit, and push
           git diff --quiet || (echo "Committing changes" && git commit -am '${{ env.CI_COMMIT_MESSAGE }}' && echo "Pushing changes" && git push -f)
