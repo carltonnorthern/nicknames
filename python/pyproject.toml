@@ -39,7 +39,7 @@ path = "src/nicknames/_version.py"
 
 [tool.hatch.envs.default]
 dependencies = [
-  "pytest",
+  "pytest==7.4.4",  # The last version that supports pythoh 3.7
   "ruff==0.4.1",
 ]
 
