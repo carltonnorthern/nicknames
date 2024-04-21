@@ -24,6 +24,7 @@ This post https://stackoverflow.com/q/61624018/5156887
 makes it seem like a custom setuptools script is the only way. So that's what I did,
 but using hatch.
 """
+
 import shutil
 
 from hatchling.builders.hooks.plugin.interface import BuildHookInterface

@@ -12,6 +12,7 @@ line are nicknames for the canonical name.
 - There are no repeated lines
 - All lines are sorted by the first name in the line
 """
+
 from __future__ import annotations
 
 import argparse
