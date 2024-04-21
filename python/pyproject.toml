@@ -40,13 +40,13 @@ path = "src/nicknames/_version.py"
 [tool.hatch.envs.default]
 dependencies = [
   "pytest",
-  "ruff>=0.1.6",
+  "ruff==0.4.1",
 ]
 
 [tool.hatch.envs.default.scripts]
 # Run these in the repo root to get ALL python files
-lint = "python -m ruff format --check .. && python -m ruff .."
-fmt = "python -m ruff --fix .. && python -m ruff format .."
+lint = "python -m ruff format --check .. && python -m ruff check .."
+fmt = "python -m ruff check --fix .. && python -m ruff format .."
 test = "pytest"
 test-CI = "pytest -Werror"
 sync = "python ../normalize.py && python ../sql/generate_sql.py"
@@ -55,7 +55,7 @@ sync = "python ../normalize.py && python ../sql/generate_sql.py"
 [tool.hatch.build.hooks.custom]
 
 [tool.ruff]
-select = [
+lint.select = [
   "E",  # pyflakes
   "F",  # pyflakes
   "I",  # isort
