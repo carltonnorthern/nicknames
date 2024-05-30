@@ -2,6 +2,11 @@ name: release
 
 on:
     workflow_dispatch:
+        inputs:
+            release:
+                description: 'tag to create and push, of the form "X.Y.Z"'
+                required: true
+                type: string
 
 defaults:
     run:
@@ -20,6 +25,16 @@ jobs:
             - uses: actions/setup-python@v2
             - name: Install Hatch
               run: pip install --upgrade hatch
+            - name: bump version, commit, tag, and push
+              run: |
+                  echo "__version__ = \"${{ inputs.release }}\"" > src/nicknames/_version.py
+                  git config user.name "NickCrews"
+                  git config user.email "nicholas.b.crews@gmail.com"
+                  git add src/nicknames/_version.py
+                  git commit -m "Bump version to ${{ inputs.release }}"
+                  git tag -a "v${{ inputs.release }}" -m "Release ${{ inputs.release }}"
+                  git push
+                  git push origin "v${{ inputs.release }}"
             - name: Build sdist and wheel
               run: hatch build
             - name: Push build artifacts to PyPI
