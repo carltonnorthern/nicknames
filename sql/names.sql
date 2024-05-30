@@ -963,13 +963,13 @@ insert into nicknames (canonical_name, nickname_1, nickname_2) values ('rich', '
 insert into nicknames (canonical_name, nickname_1, nickname_2, nickname_3, nickname_4, nickname_5, nickname_6, nickname_7, nickname_8) values ('richard', 'dick', 'dickon', 'dickie', 'dicky', 'rick', 'rich', 'ricky', 'richie');
 insert into nicknames (canonical_name, nickname_1) values ('rick', 'ricky');
 insert into nicknames (canonical_name, nickname_1, nickname_2) values ('ricky', 'dick', 'rich');
-insert into nicknames (canonical_name, nickname_1, nickname_2, nickname_3, nickname_4, nickname_5, nickname_6, nickname_7, nickname_8, nickname_9, nickname_10) values ('robert', 'hob', 'hobkin', 'dob', 'rob', 'bobby', 'dobbin', 'bob', 'bill', 'billy', 'robby');
+insert into nicknames (canonical_name, nickname_1, nickname_2, nickname_3, nickname_4, nickname_5, nickname_6, nickname_7, nickname_8, nickname_9, nickname_10, nickname_11) values ('robert', 'hob', 'hobkin', 'dob', 'rob', 'bobby', 'dobbin', 'bob', 'bill', 'billy', 'robby', 'rupert');
 insert into nicknames (canonical_name, nickname_1, nickname_2, nickname_3, nickname_4, nickname_5, nickname_6, nickname_7) values ('roberta', 'robbie', 'bert', 'bobbie', 'birdie', 'bertie', 'roby', 'birtie');
 insert into nicknames (canonical_name, nickname_1) values ('roberto', 'rob');
 insert into nicknames (canonical_name, nickname_1, nickname_2, nickname_3, nickname_4) values ('roderick', 'rod', 'erick', 'rickie', 'roddy');
-insert into nicknames (canonical_name, nickname_1, nickname_2, nickname_3, nickname_4, nickname_5, nickname_6, nickname_7) values ('rodger', 'roge', 'bobby', 'hodge', 'rod', 'robby', 'rupert', 'robin');
+insert into nicknames (canonical_name, nickname_1, nickname_2, nickname_3, nickname_4, nickname_5) values ('rodger', 'roge', 'bobby', 'hodge', 'rod', 'roger');
 insert into nicknames (canonical_name, nickname_1) values ('rodney', 'rod');
-insert into nicknames (canonical_name, nickname_1, nickname_2, nickname_3, nickname_4, nickname_5, nickname_6, nickname_7) values ('roger', 'roge', 'bobby', 'hodge', 'rod', 'robby', 'rupert', 'robin');
+insert into nicknames (canonical_name, nickname_1, nickname_2, nickname_3, nickname_4, nickname_5) values ('roger', 'roge', 'bobby', 'hodge', 'rod', 'rodger');
 insert into nicknames (canonical_name, nickname_1, nickname_2, nickname_3, nickname_4) values ('roland', 'rollo', 'lanny', 'orlando', 'rolly');
 insert into nicknames (canonical_name, nickname_1, nickname_2) values ('ron', 'ronnie', 'ronny');
 insert into nicknames (canonical_name, nickname_1, nickname_2, nickname_3, nickname_4) values ('ronald', 'naldo', 'ron', 'ronny', 'ronnie');

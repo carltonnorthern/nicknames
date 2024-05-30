@@ -2197,6 +2197,7 @@ insert into nicknames_normalized (canonical_name, nickname) values ('robert', 'b
 insert into nicknames_normalized (canonical_name, nickname) values ('robert', 'bill');
 insert into nicknames_normalized (canonical_name, nickname) values ('robert', 'billy');
 insert into nicknames_normalized (canonical_name, nickname) values ('robert', 'robby');
+insert into nicknames_normalized (canonical_name, nickname) values ('robert', 'rupert');
 insert into nicknames_normalized (canonical_name, nickname) values ('roberta', 'robbie');
 insert into nicknames_normalized (canonical_name, nickname) values ('roberta', 'bert');
 insert into nicknames_normalized (canonical_name, nickname) values ('roberta', 'bobbie');
@@ -2213,17 +2214,13 @@ insert into nicknames_normalized (canonical_name, nickname) values ('rodger', 'r
 insert into nicknames_normalized (canonical_name, nickname) values ('rodger', 'bobby');
 insert into nicknames_normalized (canonical_name, nickname) values ('rodger', 'hodge');
 insert into nicknames_normalized (canonical_name, nickname) values ('rodger', 'rod');
-insert into nicknames_normalized (canonical_name, nickname) values ('rodger', 'robby');
-insert into nicknames_normalized (canonical_name, nickname) values ('rodger', 'rupert');
-insert into nicknames_normalized (canonical_name, nickname) values ('rodger', 'robin');
+insert into nicknames_normalized (canonical_name, nickname) values ('rodger', 'roger');
 insert into nicknames_normalized (canonical_name, nickname) values ('rodney', 'rod');
 insert into nicknames_normalized (canonical_name, nickname) values ('roger', 'roge');
 insert into nicknames_normalized (canonical_name, nickname) values ('roger', 'bobby');
 insert into nicknames_normalized (canonical_name, nickname) values ('roger', 'hodge');
 insert into nicknames_normalized (canonical_name, nickname) values ('roger', 'rod');
-insert into nicknames_normalized (canonical_name, nickname) values ('roger', 'robby');
-insert into nicknames_normalized (canonical_name, nickname) values ('roger', 'rupert');
-insert into nicknames_normalized (canonical_name, nickname) values ('roger', 'robin');
+insert into nicknames_normalized (canonical_name, nickname) values ('roger', 'rodger');
 insert into nicknames_normalized (canonical_name, nickname) values ('roland', 'rollo');
 insert into nicknames_normalized (canonical_name, nickname) values ('roland', 'lanny');
 insert into nicknames_normalized (canonical_name, nickname) values ('roland', 'orlando');
