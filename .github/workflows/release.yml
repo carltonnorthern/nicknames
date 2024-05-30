@@ -20,6 +20,8 @@ jobs:
         permissions:
             # Needed for trusted publishing to PyPI
             id-token: write
+            # Needed for pushing commit and tags
+            contents: write
         steps:
             - uses: actions/checkout@v2
             - uses: actions/setup-python@v2
