@@ -58,19 +58,26 @@ jobs:
     env:
       CI_COMMIT_MESSAGE: "chore: normalize data and re-sync"
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+      - uses: actions/checkout@v4
+        with:
+          # Need this commit and last. Otherwise would overwrite all history
+          # (don't ask how I know)
+          fetch-depth: 2
+      - uses: actions/setup-python@v5
       - name: Normalize the .csv
         run: python normalize.py
       - name: Test that SQL data is up to date - normalized
         run: python sql/generate_sql.py
       - name: Check for changes
         id: changes
-        run: git diff
+        run: |
+          git diff
+          echo "has_changes=$?"
       - name: Amend and push changes
-        if: steps.changes.outputs.stdout != ''
+        if: steps.changes.has_changes != '0'
         run: |
           git config user.name "$(git log -n 1 --pretty=format:%an)"
           git config user.email "$(git log -n 1 --pretty=format:%ae)"
           git add .
           git commit --amend --no-edit
+          git push --force
