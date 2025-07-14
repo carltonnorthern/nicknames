@@ -1,25 +1,9 @@
 from __future__ import annotations
 
-from pathlib import Path
-
 import pytest
-from nicknames import NickNamer, default_lookup
 
-
-@pytest.fixture
-def csv_contents():
-    return """
-alex,al
-alexa,alex,al
-alexander,alex,al
-""".strip()
-
-
-@pytest.fixture
-def csv_filename(tmp_path: Path, csv_contents):
-    result = tmp_path / "names.csv"
-    result.write_text(csv_contents)
-    return result
+import nicknames
+from nicknames import NickNamer
 
 
 @pytest.fixture
@@ -57,6 +41,11 @@ def nicknamer(nickname_lookup):
 def _assert_equal(a: NickNamer, b: NickNamer):
     assert a._nickname_lookup == b._nickname_lookup
     assert a._canonical_lookup == b._canonical_lookup
+
+
+def test_version():
+    assert isinstance(nicknames.__version__, str)
+    assert len(nicknames.__version__) > 0
 
 
 def test_constructor(nickname_lookup, canonical_lookup, nickname_lookup_messy):
@@ -106,36 +95,6 @@ def test_weird(nicknamer: NickNamer, function):
         func(1)
 
 
-def test_from_lines(csv_contents: str, nicknamer: NickNamer):
-    lines = [line.split(",") for line in csv_contents.splitlines()]
-    result = NickNamer.from_lines(lines)
-    _assert_equal(result, nicknamer)
-
-
-def test_from_lines_bad():
-    fine = ["alex, al"]
-
-    canonical_in_nicknames = [fine, ["al", "alex", "al"]]
-    with pytest.raises(ValueError):
-        NickNamer.from_lines(canonical_in_nicknames)
-
-    too_short = [fine, []]
-    with pytest.raises(ValueError):
-        NickNamer.from_lines(too_short)
-
-    too_short = [fine, ["al"]]
-    with pytest.raises(ValueError):
-        NickNamer.from_lines(too_short)
-
-
-def test_from_csv(csv_filename, nicknamer: NickNamer):
-    result = NickNamer.from_csv(csv_filename)
-    _assert_equal(result, nicknamer)
-
-    with pytest.raises(FileNotFoundError):
-        NickNamer.from_csv("not_present.csv")
-
-
 def test_default_load():
     denormer = NickNamer()
     assert len(denormer._nickname_lookup) > 0
@@ -152,7 +111,7 @@ def test_default_load_twice():
 
 
 def test_default_lookup():
-    lookup = default_lookup()
+    lookup = NickNamer.default_lookup()
     assert isinstance(lookup, dict)
     assert len(lookup) > 0
     assert "nick" in lookup["nicholas"]
@@ -161,8 +120,8 @@ def test_default_lookup():
 
 def test_default_lookup_copied():
     # Check that the default lookup is not modified
-    lookup = default_lookup()
+    lookup = NickNamer.default_lookup()
     lookup_original = lookup.copy()
     lookup.clear()
-    lookup2 = default_lookup()
+    lookup2 = NickNamer.default_lookup()
     assert lookup2 == lookup_original

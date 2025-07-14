@@ -15,19 +15,20 @@ from nicknames
 where canonical_name = 'alexander' ;
 
 
--- The table "nicknames_normalized" converts names.csv into a normalized structure
+-- The table "nicknames_normalized" contains RDF triples with name1, relationship, name2
 -- All canonical names in this repo
-select canonical_name 
+select name1 
 from nicknames_normalized
-group by canonical_name
-order by canonical_name ;
+where relationship = 'has_nickname'
+group by name1
+order by name1 ;
 
 -- All nicknames for alexander (N rows with 1 nickname each)
-select nickname
+select name2 as nickname
 from nicknames_normalized
-where canonical_name = 'alexander' ;
+where name1 = 'alexander' and relationship = 'has_nickname' ;
 
 -- All canonical names for which 'al' is a nickname
-select canonical_name
+select name1 as canonical_name
 from nicknames_normalized
-where nickname = 'al' ;
+where name2 = 'al' and relationship = 'has_nickname' ;

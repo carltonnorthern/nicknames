@@ -1,19 +1,17 @@
-"""Tool to normalize a CSV file.
+"""Tool to normalize the names.csv file of RDF triples.
 
-The first name in each line is the canonical name. The rest of the names in that
-line are nicknames for the canonical name.
+Each line is in the format: (name1, relationship, name2)
+For example:
+    robert,has_nickname,bob
+    robert,is_translation_of:en-sp,robertoxw
 
 "Normalized" means:
 
 - All names are lowercase
 - All names have no leading or trailing whitespace
-- A line has at least 2 names, one canonical and at least one nickname
-- A name doesn't appear in a line more than once
 - There are no repeated lines
-- All lines are sorted by the first name in the line
+- All lines are sorted
 """
-
-from __future__ import annotations
 
 import argparse
 import csv
@@ -22,79 +20,66 @@ from pathlib import Path
 from typing import Iterable, Sequence
 
 _THIS_DIR = Path(__file__).parent
+_HEADER = ["name1", "relationship", "name2"]
 
 
-def read_lines(path: str):
+def read_lines(path: str) -> Iterable[list[str]]:
     with open(path) as f:
-        return [line for line in csv.reader(f)]
+        reader = csv.reader(f)
+        for line in reader:
+            if line == _HEADER:
+                continue
+            yield list(line)
 
 
-def write_lines(path: str, lines: Iterable[Iterable[str]]):
+def write_lines(path: str, lines: Iterable[Sequence[str]]) -> None:
     with open(path, "w") as f:
         writer = csv.writer(f)
-        writer.writerows(lines)
+        writer.writerow(_HEADER)
+        for line in lines:
+            writer.writerow(line)
 
 
 def normalize(lines: Iterable[Iterable[str]]) -> list[list[str]]:
     lines = (list(line) for line in lines)
     lines = (line for line in lines if len(line))
-    lines = ([norm_name(name) for name in line] for line in lines)
-    lines = merge_lines(lines)
+    lines = (norm_line(line) for line in lines)
     lines = check_integrity(lines)
     lines = (drop_duplicates(line) for line in lines)
     lines = unique_lines(lines)
     lines = sort_lines(lines)
-    return lines
+    return list(lines)
 
 
-def merge_lines(lines: Iterable[Iterable[str]]) -> list[list[str]]:
-    """if more than one line has the same canonical name, merge them into one."""
-    m = {}
-    for line in lines:
-        canonical, nicknames = line[0], line[1:]
-        if canonical in m:
-            m[canonical].extend(nicknames)
-        else:
-            m[canonical] = list(nicknames)
-    return [[canonical, *nicknames] for canonical, nicknames in m.items()]
+def norm_line(line: list[str]) -> list[str]:
+    return [field.lower().strip() for field in line]
 
 
-def norm_name(name: str) -> str:
-    return name.lower().strip()
-
-
-def drop_duplicates(line: Iterable[str]):
-    """Get a list of unique elements in a list, preserving order."""
+def drop_duplicates(line: Iterable[str]) -> list[str]:
     return list(dict.fromkeys(line))
 
 
-def unique_lines(lines: Iterable[Sequence[str]]):
-    seen = set()
-    result = []
-    for line in lines:
-        canonical, nicknames = line[0], line[1:]
-        key = (canonical, frozenset(nicknames))
-        if key in seen:
-            continue
-        seen.add(key)
-        result.append(line)
-    return result
+def unique_lines(lines: Iterable[Sequence[str]]) -> list[list[str]]:
+    d = dict.fromkeys(tuple(line) for line in lines)
+    return [list(line) for line in d.keys()]
 
 
 def check_integrity(lines: Iterable[Sequence[str]]) -> Iterable[Sequence[str]]:
-    for i, line in enumerate(lines):
-        if len(line) < 2:
-            raise ValueError(f"Line  {i} ({line}) has less than 2 elements")
-        yield line
-
-
-def sort_lines(lines: Iterable[Iterable[str]]) -> list[list[str]]:
+    errors = []
     lines = list(lines)
-    lines.sort(key=lambda line: line[0])
+    for i, line in enumerate(lines):
+        if len(line) != 3:
+            errors.append(f"Line {i} ({line}) needs 3 elements")
+    if errors:
+        raise ValueError("\n".join(errors))
     return lines
 
 
-def parse_args(argv):
+def sort_lines(lines: Iterable[Iterable[str]]) -> list[list[str]]:
+    return sorted(lines)
+
+
+def parse_args(argv) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Normalize names.csv")
     parser.add_argument(
         "-i", "--input", help="Path to input CSV file", default=_THIS_DIR / "names.csv"
@@ -108,7 +93,7 @@ def parse_args(argv):
     return parser.parse_args(argv)
 
 
-def cli(argv):
+def cli(argv) -> None:
     args = parse_args(argv)
     lines = read_lines(args.input)
     normed = normalize(lines)
