@@ -3,7 +3,7 @@
 Each line is in the format: (name1, relationship, name2)
 For example:
     robert,has_nickname,bob
-    robert,is_translation_of:en-sp,robertoxw
+    robert,is_translation_of:en-sp,roberto
 
 "Normalized" means:
 
