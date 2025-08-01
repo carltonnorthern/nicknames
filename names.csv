@@ -576,6 +576,7 @@ christine,has_nickname,crissy
 christine,has_nickname,kris
 christine,has_nickname,kristy
 christine,has_nickname,tina
+christoffer,has_nickname,chris
 christoph,has_nickname,chris
 christopher,has_nickname,chris
 christopher,has_nickname,kit
@@ -1525,6 +1526,10 @@ kristine,has_nickname,crissy
 kristine,has_nickname,kris
 kristine,has_nickname,kristy
 kristine,has_nickname,tina
+kristofer,has_nickname,chris
+kristofer,has_nickname,kris
+kristoffer,has_nickname,chris
+kristoffer,has_nickname,kris
 kristopher,has_nickname,chris
 kristopher,has_nickname,kris
 kristy,has_nickname,chris
@@ -1858,6 +1863,7 @@ maureen,has_nickname,mary
 maurice,has_nickname,morey
 mavery,has_nickname,mave
 mavine,has_nickname,mave
+maximilian,has_nickname,max
 maximillian,has_nickname,max
 maxine,has_nickname,max
 maxwell,has_nickname,max
@@ -2005,6 +2011,11 @@ nicodemus,has_nickname,nick
 nicodemus,has_nickname,nickie
 nicodemus,has_nickname,nicky
 nicodemus,has_nickname,nico
+nicolas,has_nickname,nic
+nicolas,has_nickname,nick
+nicolas,has_nickname,nickie
+nicolas,has_nickname,nicky
+nicolas,has_nickname,nico
 nicole,has_nickname,cole
 nicole,has_nickname,nicki
 nicole,has_nickname,nicky
