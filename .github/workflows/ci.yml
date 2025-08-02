@@ -44,9 +44,8 @@ jobs:
       - name: pytest
         run: hatch run test-CI
 
-  normalize:
+  ensure-normalized:
     name: Normalize, regenerate, and push data
-    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -56,8 +55,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          # Need this commit and last. Otherwise would overwrite all history
-          # (don't ask how I know)
+          token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 2
       - uses: actions/setup-python@v5
       - name: Normalize the .csv
@@ -67,13 +65,31 @@ jobs:
       - name: Check for changes
         id: changes
         run: |
-          git diff
-          echo "has_changes=$?"
-      - name: Amend and push changes
-        if: steps.changes.has_changes != '0'
+          if git diff --quiet; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "Changes detected:"
+            git diff --name-only
+          fi
+      - name: Commit and push changes
+        if: steps.changes.outputs.has_changes == 'true'
         run: |
-          git config user.name "$(git log -n 1 --pretty=format:%an)"
-          git config user.email "$(git log -n 1 --pretty=format:%ae)"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           git add .
-          git commit --amend --no-edit
-          git push --force
+          
+          # Try to push changes, handle permission failures
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            git commit -m "chore: normalize data and re-sync"
+            if ! git push; then
+              echo "::error::Data normalization is required, but this workflow cannot push to your fork."
+              echo "::error::Please either:"
+              echo "::error::1. Run 'python normalize.py' locally and commit the changes, or"
+              echo "::error::2. Allow maintainer edits on your PR: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/allowing-changes-to-a-pull-request-branch-created-from-a-fork"
+              exit 1
+            fi
+          else
+            git commit --amend --no-edit
+            git push --force
+          fi
