@@ -24,7 +24,7 @@ npm install
 
 The build has two stages:
 
-1. **Generate data** — reads `../names.csv` and produces `src/data.ts`
+1. **Generate data** — reads `../names.csv` and produces `src/data-generated.ts`
 2. **Compile** — tsup bundles the TypeScript into CJS + ESM with type declarations
 
 Run both with:

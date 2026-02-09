@@ -1,4 +1,4 @@
-import { defaultNamesData } from "./data";
+import { defaultNamesData } from "./data-generated";
 import { Relationship, NameTriple, RELATIONSHIPS } from "./types";
 
 export {

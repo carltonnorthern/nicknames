@@ -1,4 +1,4 @@
-// Reads ../names.csv and generates src/data.ts with embedded name data.
+// Reads ../names.csv and generates src/data-generated.ts with embedded name data.
 
 import { readFileSync, writeFileSync } from "fs";
 import { resolve, dirname } from "path";
@@ -6,7 +6,7 @@ import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const csvPath = resolve(__dirname, "../../names.csv");
-const outPath = resolve(__dirname, "../src/data.ts");
+const outPath = resolve(__dirname, "../src/data-generated.ts");
 
 const csv = readFileSync(csvPath, "utf-8");
 const rows = csv
@@ -41,4 +41,4 @@ export const defaultNamesData = (): Array<NameTriple> =>
 `;
 
 writeFileSync(outPath, output, "utf-8");
-console.log(`Generated src/data.ts with ${rows.length} name groups.`);
+console.log(`Generated src/data-generated.ts with ${rows.length} name groups.`);
