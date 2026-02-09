@@ -13,7 +13,8 @@ defaults:
     working-directory: python
 
 jobs:
-  lint:
+  python-lint:
+    name: Lint Python
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -26,7 +27,8 @@ jobs:
         run: hatch run lint
 
 
-  test:
+  python-test-and-build:
+    name: Test and Build Python
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -44,8 +46,26 @@ jobs:
       - name: pytest
         run: hatch run test-CI
 
+  js-test-and-lint:
+    name: Test and Lint JS
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: js
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+      - name: Install dependencies
+        run: npm install
+      - name: Lint
+        run: npm run lint
+      - name: Test
+        run: npm test
+
   ensure-normalized:
-    name: Normalize, regenerate, and push data
+    name: Normalize, regenerate, and push csv data
     runs-on: ubuntu-latest
     defaults:
       run:

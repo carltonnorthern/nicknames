@@ -1,4 +1,4 @@
-name: release
+name: Build and Release to PyPI
 
 on:
     workflow_dispatch:
@@ -13,7 +13,8 @@ defaults:
         working-directory: python
 
 jobs:
-    build-and-release:
+    pypi-build-and-release:
+        name: Build and Release to PyPI
         # Since we only make pure python wheels and source,
         # we only need to build on one platform.
         runs-on: ubuntu-latest
