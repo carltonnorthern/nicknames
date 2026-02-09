@@ -59,6 +59,9 @@ jobs:
           node-version: "20"
       - name: Install dependencies
         run: npm install
+      - name: Build
+        # Need to build to generate the data-generated.ts file
+        run: npm run build
       - name: Lint
         run: npm run lint
       - name: Test
