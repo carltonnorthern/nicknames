@@ -4,6 +4,8 @@ A JavaScript/TypeScript library for looking up nicknames and diminutive names fo
 
 ## Installation
 
+Install from [npm](https://www.npmjs.com/package/nicknames-curated):
+
 ```bash
 npm install nicknames-curated
 ```
@@ -13,11 +15,34 @@ npm install nicknames-curated
 ```typescript
 import { NickNamer } from "nicknames-curated";
 
-const nickNamer = new NickNamer();
-nickNamer.nicknamesOf("nicholas"); // Set { "nick", "nik", ... }
-nickNamer.nicknamesOf("NICHOLAS"); // Set { "nick", "nik", ... }
-nickNamer.nicknamesOf("not a Name"); // empty set
-nickNamer.canonicalsOf("bob"); // Set {"robert", ...}
+const nn = new NickNamer();
+
+// Get the nicknames for a given name as a Set of strings
+const nicks = nn.nicknamesOf("alexander");
+console.log(nicks.has("al")); // true
+console.log(nicks.has("alex")); // true
+
+// Note that the relationship isn't symmetric: al is a nickname for alexander,
+// but alexander is not a nickname for al.
+console.log(nn.nicknamesOf("al").has("alexander")); // false
+
+// Capitalization is ignored and leading and trailing whitespace is ignored
+console.log(nn.nicknamesOf("alexander").size === nn.nicknamesOf(" ALEXANDER ").size); // true
+
+// Queries that aren't found return an empty set
+console.log(nn.nicknamesOf("not a name").size); // 0
+
+// The other useful thing is to go the other way, nickname to canonical:
+// It acts very similarly to nicknamesOf.
+const can = nn.canonicalsOf("al");
+console.log(can.has("alexander")); // true
+console.log(can.has("alex")); // false (alex is also a nickname, not canonical)
+
+console.log(nn.canonicalsOf("alexander").has("al")); // false
+
+// You can combine these to see if two names are interchangeable:
+const union = new Set([...nn.nicknamesOf("al"), ...nn.canonicalsOf("al")]);
+const areInterchangeable = union.has("alexander"); // true
 ```
 
 ### Using Custom Data
@@ -31,7 +56,7 @@ const customData = [
     ...defaultNamesData(),
   ["elizabeth", "has_nickname", "liz"],
 ];
-const nickNamer = new NickNamer(customData);
+const nn = new NickNamer(customData);
 ```
 
 ## About
