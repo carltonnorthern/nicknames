@@ -81,3 +81,48 @@ are_interchangeable = "alexander" in union
 ```
 
 For more advanced usage, such as loading your own data, read the source code.
+
+## JavaScript/TypeScript API
+
+The JavaScript/TypeScript package is available on npm:
+
+```bash
+npm install nicknames-curated
+```
+
+and then you can do:
+
+```typescript
+import { NickNamer } from "nicknames-curated";
+
+const nn = new NickNamer();
+
+// Get the nicknames for a given name as a Set of strings
+const nicks = nn.nicknamesOf("alexander");
+console.log(nicks.has("al")); // true
+console.log(nicks.has("alex")); // true
+
+// Note that the relationship isn't symmetric: al is a nickname for alexander,
+// but alexander is not a nickname for al.
+console.log(nn.nicknamesOf("al").has("alexander")); // false
+
+// Capitalization is ignored and leading and trailing whitespace is ignored
+console.log(nn.nicknamesOf("alexander").size === nn.nicknamesOf(" ALEXANDER ").size); // true
+
+// Queries that aren't found return an empty set
+console.log(nn.nicknamesOf("not a name").size); // 0
+
+// The other useful thing is to go the other way, nickname to canonical:
+// It acts very similarly to nicknamesOf.
+const can = nn.canonicalsOf("al");
+console.log(can.has("alexander")); // true
+console.log(can.has("alex")); // false (alex is also a nickname, not canonical)
+
+console.log(nn.canonicalsOf("alexander").has("al")); // false
+
+// You can combine these to see if two names are interchangeable:
+const union = new Set([...nn.nicknamesOf("al"), ...nn.canonicalsOf("al")]);
+const areInterchangeable = union.has("alexander"); // true
+```
+
+Note: The old `NameDenormalizer` class is deprecated but still available for backward compatibility.
