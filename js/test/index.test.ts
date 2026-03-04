@@ -84,7 +84,7 @@ describe("NickNamer", () => {
     });
 
     it("works with merged default and custom data", () => {
-      const customData: ReadonlyArray<NameTriple> = [...defaultNamesData(), ["xyzname", "has_nickname", "xyz"]];
+      const customData: ReadonlyArray<NameTriple> = [...defaultNamesData() as Array<NameTriple>, ["xyzname", "has_nickname", "xyz"]];
       const mergedNn = new NickNamer(customData);
       expect(mergedNn.nicknamesOf("gregory").has("greg")).toBe(true);
       expect(mergedNn.nicknamesOf("xyzname").has("xyz")).toBe(true);
@@ -102,9 +102,9 @@ describe("NickNamer", () => {
 
 describe("defaultNamesData", () => {
   it("returns a fresh copy each call", () => {
-    const first = defaultNamesData();
+    const first = defaultNamesData() as Array<NameTriple>;
     first.push(["tempname", "has_nickname", "temp"]);
-    const second = defaultNamesData();
+    const second = defaultNamesData() as Array<NameTriple>;
     const tempEntries = second.filter(([canonical]) => canonical === "tempname");
     expect(tempEntries.length).toBe(0);
   });
