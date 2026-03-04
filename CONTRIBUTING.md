@@ -5,6 +5,7 @@
 - `names.csv` — the source data (one row per name group, comma-separated)
 - `python/` — the `nicknames` python package
 - `js/` — the `nicknames-curated` npm package (TypeScript)
+- `sql/` - Example SQL scripts for users
 
 ## JavaScript / TypeScript package (`js/`)
 
