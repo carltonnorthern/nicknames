@@ -3,6 +3,7 @@
 import argparse
 import csv
 import sys
+from collections.abc import Iterable
 from pathlib import Path
 
 _THIS_DIR = Path(__file__).parent
@@ -54,7 +55,7 @@ def parse_argv(argv: list[str]) -> argparse.Namespace:
     return args
 
 
-def read_rdf_csv(file_name: str) -> list[tuple[str, str, str]]:
+def read_rdf_csv(file_name: str | Path) -> list[tuple[str, str, str]]:
     with open(file_name) as f:
         reader = csv.reader(f)
         next(reader)  # Skip header
@@ -124,7 +125,7 @@ def triples_to_rows(triples: list[tuple[str, str, str]]) -> list[list[str]]:
     ]
 
 
-def insert_statement(table_name: str, values: list[str]) -> str:
+def insert_statement(table_name: str, values: Iterable[str]) -> str:
     quoted_values = [f"'{v}'" for v in values]
     v = ", ".join(quoted_values)
     return f"insert into {table_name} values ({v});"
