@@ -22,7 +22,7 @@ class NickNamer:
         to parse your own custom data.
 
         >>> nn = NickNamer()
-        >>> assert nn.nicknames_of("nicholas").issuperset({"nick", "nik"})
+        >>> assert nn.nicknames_of("nicholas").issuperset({"nick", "nic", "nico"})
         >>> assert nn.canonicals_of("nick").issuperset({"nicholas", "nikolas"})
         """
         if canonical_lookup is None:
@@ -57,7 +57,7 @@ class NickNamer:
         Results are always lowercase and have no leading or trailing whitespace.
 
         >>> nn = NickNamer()
-        >>> assert nn.nicknames_of("nicholas").issuperset({"nick", "nik"})
+        >>> assert nn.nicknames_of("nicholas").issuperset({"nick", "nic", "nico"})
         >>> assert "nicholas" not in nn.nicknames_of("nick")
         >>> assert nn.nicknames_of("nicholas") == nn.nicknames_of(" NICHOLAS ")
         >>> assert nn.nicknames_of("not a name") == set()
@@ -73,7 +73,7 @@ class NickNamer:
 
         >>> nn = NickNamer()
         >>> assert nn.canonicals_of("nick").issuperset({"nicholas", "nikolas"})
-        >>> assert "nick" not in n.canonicals_of("nicholas")
+        >>> assert "nick" not in nn.canonicals_of("nicholas")
         >>> assert nn.canonicals_of("nick") == nn.canonicals_of(" NICK ")
         >>> assert nn.canonicals_of("not a name") == set()
         """
@@ -85,18 +85,19 @@ class NickNamer:
 
         Each line should be in the format: (name1, relationship, name2)
 
-        >>> lines = [
-        >>>     ["alex", "has_nickname", "al"],
-        >>>     ["alexander", "has_nickname", "al"],
-        >>>     ["alexander", "has_nickname", "alex"],
-        >>>     ["alexander", "is_translation_of:en-sp", "alejandro"],
-        >>> ]
-        >>> nn = NickNamer.from_lines(lines)
-        >>> assert nn.nicknames_of("alex") == {"al"}
-        >>> assert nn.nicknames_of("alexa") == {"al", "alex"}
-        >>> assert nn.nicknames_of("al") == {}
-        >>> assert nn.canonicals_of("alex") == {"alexa", "alexander"}
-        >>> assert nn.canonicals_of("alexander") == {}
+        >>> triplets = [
+        ...     ["alex", "has_nickname", "al"],
+        ...     ["alexander", "has_nickname", "al"],
+        ...     ["alexander", "has_nickname", "alex"],
+        ...     ["alexander", "is_translation_of:en-sp", "alejandro"],
+        ... ]
+        >>> nn = NickNamer.from_triplets(triplets)
+        >>> assert nn.nicknames_of("alex") == {'al'}
+        >>> assert nn.nicknames_of("al") == set()
+        >>> assert nn.nicknames_of("alexander") == {"al", "alex"}
+        >>> assert nn.canonicals_of("al") == {"alex", "alexander"}
+        >>> assert nn.canonicals_of("alex") == {"alexander"}
+        >>> assert nn.canonicals_of("alexander") == set()
         """
         nickname_lookup = _lookup_from_triplets(lines)
         return cls(nickname_lookup=nickname_lookup)

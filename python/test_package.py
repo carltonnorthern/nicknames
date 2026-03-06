@@ -62,7 +62,7 @@ def test_constructor(nickname_lookup, canonical_lookup, nickname_lookup_messy):
 
     # Positional arguments are not allowed to prevent accidental misuse
     with pytest.raises(TypeError):
-        NickNamer(nickname_lookup)
+        NickNamer(nickname_lookup)  # ty:ignore[too-many-positional-arguments]
 
 
 def test_nicknames(nicknamer: NickNamer):

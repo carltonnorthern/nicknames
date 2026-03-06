@@ -1,10 +1,9 @@
 [![CI](https://github.com/carltonnorthern/nicknames/actions/workflows/ci.yml/badge.svg)](https://github.com/carltonnorthern/nicknames/actions/workflows/ci.yml)
-[![PyPI version](https://badge.fury.io/py/nicknames.svg)](https://badge.fury.io/py/nicknames)
 
 # Nicknames
 
 A hand-curated CSV file ([names.csv](./names.csv)) containing English given names (first names) and
-their associated nicknames. There are Python and SQL bindings provided for convenience.
+their associated nicknames. There are Python, TypeScript/javascript, and SQL bindings provided for convenience.
 
 This currently contains roughly 1100 canonical names.
 Any help from people to clean or add to it is greatly appreciated.
@@ -31,76 +30,8 @@ This project was created by [Old Dominion University](https://www.odu.edu/) -
 More information about the creation of this lookup can be found on this
 [blog post about the creation of this library](https://ws-dl.blogspot.com/2010/08/lookup-for-nicknames-and-diminutive.html)
 
-## SQL API
+## Client Libraries
 
-See the [sql/](./sql/) directory.
-
-## Python API
-
-The Python parser is available on PyPI from
-
-```bash
-pip install nicknames
-```
-
-and then you can do:
-
-```python
-from nicknames import NickNamer
-
-nn = NickNamer()
-
-# Get the nicknames for a given name as a set of strings
-nicks = nn.nicknames_of("Alexander")
-assert isinstance(nicks, set)
-assert "al" in nicks
-assert "alex" in nicks
-
-# Note that the relationship isn't symmetric: al is a nickname for alexander,
-# but alexander is not a nickname for al.
-assert "alexander" not in nn.nicknames_of("al")
-
-# Capitalization is ignored and leading and trailing whitespace is ignored
-assert nn.nicknames_of("alexander") == nn.nicknames_of(" ALEXANDER ")
-
-# Queries that aren't found return an empty set
-assert nn.nicknames_of("not a name") == set()
-
-# The other useful thing is to go the other way, nickname to canonical:
-# It acts very similarly to nicknames_of.
-can = nn.canonicals_of("al")
-assert isinstance(can, set)
-assert "alexander" in can
-assert "alex" in can
-
-assert "al" not in nn.canonicals_of("alexander")
-
-# You can combine these to see if two names are interchangeable:
-union = nn.nicknames_of("al") | nn.canonicals_of("al")
-are_interchangeable = "alexander" in union
-```
-
-For more advanced usage, such as loading your own data, read the source code.
-
-## JavaScript/TypeScript API
-
-The JavaScript/TypeScript package is available on npm:
-
-```bash
-npm install nicknames-curated
-```
-
-and then you can do:
-
-```typescript
-import { NickNamer } from "nicknames-curated";
-
-const nn = new NickNamer();
-
-// Get the nicknames for a given name as a Set of strings
-const nicks = nn.nicknamesOf("alexander");
-console.log(nicks.has("al")); // true
-console.log(nicks.has("alex")); // true
-```
-
-See the [js/](./js/) directory for more information.
+- **Python**: See the [python/](./python/) directory.
+- **TypeScript/javascript**: See the [js/](./js/) directory.
+- **SQL**: See the [sql/](./sql/) directory.

@@ -8,43 +8,51 @@ on:
   pull_request:
     branches: [master]
 
-defaults:
-  run:
-    working-directory: python
-
 jobs:
   python-lint:
+    defaults:
+      run:
+        working-directory: python
     name: Lint Python
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+      - uses: actions/checkout@v6
+      - uses: astral-sh/setup-uv@v7
+      - uses: actions/setup-python@v6
         with:
-          python-version: "3.11"
-      - name: Install Hatch
-        run: pip install --upgrade hatch
+          python-version: "3.14"
+      - name: Install dependencies
+        run: uv sync --group dev
       - name: lint
-        run: hatch run lint
+        run: uv run poe check
 
 
   python-test-and-build:
     name: Test and Build Python
     runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: python
     strategy:
       fail-fast: false
       matrix:
         os: [windows-latest, macos-latest, ubuntu-latest]
-        python-version: [3.8, 3.9, "3.10", "3.11", "3.12", "3.13"]
+        python-version: [3.8, 3.9, "3.10", "3.11", "3.12", "3.13", "3.14"]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v6
+      - uses: astral-sh/setup-uv@v7
+        with:
+          enable-cache: true
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Install Hatch
-        run: pip install --upgrade hatch
+      - name: Install dependencies
+        run: uv sync --group dev
+      - name: copy data files
+        run: ./cp.sh
       - name: pytest
-        run: hatch run test-CI
+        run: uv run poe test
 
   js-test-and-lint:
     name: Test and Lint JS
@@ -53,7 +61,7 @@ jobs:
       run:
         working-directory: js
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v6
       - uses: actions/setup-node@v3
         with:
           node-version: "20"
@@ -76,11 +84,11 @@ jobs:
     env:
       CI_COMMIT_MESSAGE: "chore: normalize data and re-sync"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 2
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
       - name: Normalize the .csv
         run: python normalize.py
       - name: Test that SQL data is up to date - normalized

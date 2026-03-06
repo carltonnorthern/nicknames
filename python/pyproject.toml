@@ -1,6 +1,6 @@
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["uv_build>=0.10.8,<0.11.0"]
+build-backend = "uv_build"
 
 [project]
 name = "nicknames"
@@ -10,7 +10,7 @@ authors = [
   { name="Nick Crews", email="nicholas.b.crews@gmail.com" },
 ]
 description = "Hand-curated dataset of English names and nicknames."
-readme = "../README.md"
+readme = "README.md"
 license = "Apache-2.0"
 requires-python = ">=3.8"
 classifiers = [
@@ -38,22 +38,27 @@ classifiers = [
 "Homepage" = "https://github.com/carltonnorthern/nicknames"
 "Bug Tracker" = "https://github.com/carltonnorthern/nicknames/issues"
 
-[tool.hatch.envs.default]
-dependencies = [
-  "pytest==7.4.4",  # The last version that supports python 3.7
-  "ruff==0.12.3",
+# to use these, either `uv run poe <task>`, or install poethepoet globally:
+# `uv tool install poethepoet` and then `poe lint`
+[tool.poe.tasks]
+# Run these in the reproot to get ALL python files
+check-fmt = "ruff format --check .."
+check-ruff = "ruff check .."
+check-ty = "ty check .."
+fix-fmt = "ruff format .."
+fix-ruff = "ruff check --fix .."
+build.shell = "./cp.sh && uv build"
+test = "uv run pytest"
+check = ["check-fmt", "check-ruff", "check-ty"]
+fix = ["fix-fmt", "fix-ruff"]
+
+[dependency-groups]
+dev = [
+  "poethepoet>=0.30.0",
+  "pytest==7.4.4", # The last version that supports python 3.7
+  "ruff>=0.15.5",
+  "ty>=0.0.21",
 ]
-
-[tool.hatch.envs.default.scripts]
-# Run these in the repo root to get ALL python files
-lint = "python -m ruff format --check .. && python -m ruff check .."
-fmt = "python -m ruff check --fix .. && python -m ruff format .."
-test = "pytest"
-test-CI = "pytest -Werror"
-sync = "python ../normalize.py && python ../sql/generate_sql.py"
-
-# Instructs hatch to call hatch_build.py during build step
-[tool.hatch.build.hooks.custom]
 
 [tool.ruff]
 lint.select = [
@@ -61,3 +66,7 @@ lint.select = [
   "F",  # pyflakes
   "I",  # isort
 ]
+
+[tool.pytest.ini_options]
+addopts = "-Werror --doctest-modules"
+testpaths = ["src", "test_package.py"]

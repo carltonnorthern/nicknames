@@ -24,10 +24,11 @@ jobs:
             # Needed for pushing commit and tags
             contents: write
         steps:
-            - uses: actions/checkout@v2
-            - uses: actions/setup-python@v2
-            - name: Install Hatch
-              run: pip install --upgrade hatch
+            - uses: actions/checkout@v6
+            - uses: astral-sh/setup-uv@v7
+            - uses: actions/setup-python@v6
+              with:
+                python-version: "3.14"
             - name: tag and push tags
               run: |
                   git config user.name "NickCrews"
@@ -35,8 +36,10 @@ jobs:
                   git tag -a "v${{ inputs.release }}" -m "Release ${{ inputs.release }}"
                   git push
                   git push origin "v${{ inputs.release }}"
+            - name: copy data files
+              run: ./cp.sh
             - name: Build sdist and wheel
-              run: hatch build
+              run: uv build
             - name: Push build artifacts to PyPI
               uses: pypa/gh-action-pypi-publish@release/v1
               with:

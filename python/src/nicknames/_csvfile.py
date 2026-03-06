@@ -87,15 +87,16 @@ class NameTriplet(NamedTuple):
 def name_triplets() -> List[NameTriplet]:
     """NameTriplet objects from the names.csv file.
 
-    Example usage:
+    Examples
+    --------
     >>> import nicknames
-    >>> print(nicknames.name_triplets()[0])
-    NameTriplet(name1='aaron', relationship='has_nickname', name2='erin')
-    """
+    >>> nicknames.name_triplets()[:3]
+    [NameTriplet(name1='aaron', relationship='has_nickname', name2='erin'), NameTriplet(name1='aaron', relationship='has_nickname', name2='ron'), NameTriplet(name1='aaron', relationship='has_nickname', name2='ronnie')]
+    """  # noqa: E501
     relationships = []
     with with_names_csv_path() as path, open(path, "r") as f:
         reader = csv.reader(f)
         next(reader)  # Skip header
         for row in reader:
-            relationships.append(NameTriplet(*row))
+            relationships.append(NameTriplet(*row))  # ty:ignore[invalid-argument-type]
     return relationships

@@ -75,7 +75,7 @@ def check_integrity(lines: Iterable[Sequence[str]]) -> Iterable[Sequence[str]]:
     return lines
 
 
-def sort_lines(lines: Iterable[Iterable[str]]) -> list[list[str]]:
+def sort_lines(lines: Iterable[list[str]]) -> list[list[str]]:
     return sorted(lines)
 
 
