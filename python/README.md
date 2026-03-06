@@ -10,7 +10,7 @@ In case that is useful to you, there are also SQL and typescript bindings there.
 
 ## Python API
 
-The Python package is available on PyPI from
+The Python package is [available on PyPI](https://pypi.org/project/nicknames/) from
 
 ```bash
 uv add nicknames
