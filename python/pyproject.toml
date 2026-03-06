@@ -47,7 +47,6 @@ check-ruff = "ruff check .."
 check-ty = "ty check .."
 fix-fmt = "ruff format .."
 fix-ruff = "ruff check --fix .."
-build.shell = "./cp.sh && uv build"
 test = "uv run pytest"
 check = ["check-fmt", "check-ruff", "check-ty"]
 fix = ["fix-fmt", "fix-ruff"]

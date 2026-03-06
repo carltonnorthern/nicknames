@@ -50,7 +50,7 @@ jobs:
       - name: Install dependencies
         run: uv sync --group dev
       - name: copy data files
-        run: ./cp.sh
+        run: python cp.py
       - name: pytest
         run: uv run poe test
 

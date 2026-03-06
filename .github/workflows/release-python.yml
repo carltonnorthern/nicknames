@@ -37,7 +37,7 @@ jobs:
                   git push
                   git push origin "v${{ inputs.release }}"
             - name: copy data files
-              run: ./cp.sh
+              run: python cp.py
             - name: Build sdist and wheel
               run: uv build
             - name: Push build artifacts to PyPI
