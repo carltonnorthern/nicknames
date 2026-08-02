@@ -118,6 +118,8 @@ aleksandr,has_nickname,alex
 aleva,has_nickname,leve
 aleva,has_nickname,levy
 alex,has_nickname,al
+alexa,has_nickname,alex
+alexa,has_nickname,lexi
 alexander,has_nickname,al
 alexander,has_nickname,alec
 alexander,has_nickname,alex
@@ -269,6 +271,9 @@ archilles,has_nickname,kill
 archilles,has_nickname,killis
 ariadne,has_nickname,ari
 ariadne,has_nickname,arie
+ariana,has_nickname,ari
+arianna,has_nickname,ari
+ariel,has_nickname,ari
 arielle,has_nickname,arie
 aristotle,has_nickname,telly
 arizona,has_nickname,ona
@@ -323,7 +328,9 @@ aurelia,has_nickname,ora
 aurelia,has_nickname,orilla
 aurelia,has_nickname,ree
 aurelia,has_nickname,rilly
+aurora,has_nickname,rory
 avarilla,has_nickname,rilla
+axel,has_nickname,ax
 azariah,has_nickname,aze
 azariah,has_nickname,riah
 bab,has_nickname,barby
@@ -339,6 +346,7 @@ barbery,has_nickname,barbara
 barbie,has_nickname,barbara
 barnabas,has_nickname,barney
 barney,has_nickname,barnabas
+barrett,has_nickname,barry
 bart,has_nickname,bartholomew
 bartholomew,has_nickname,bart
 bartholomew,has_nickname,bartel
@@ -361,6 +369,9 @@ belinda,has_nickname,linda
 bella,has_nickname,arabella
 bella,has_nickname,belle
 bella,has_nickname,isabella
+ben,has_nickname,benji
+ben,has_nickname,bennie
+ben,has_nickname,benny
 benedict,has_nickname,ben
 benedict,has_nickname,bennie
 benjamin,has_nickname,ben
@@ -369,6 +380,9 @@ benjamin,has_nickname,bennie
 benjamin,has_nickname,benny
 benjamin,has_nickname,jamie
 benjy,has_nickname,benjamin
+bennett,has_nickname,ben
+bennett,has_nickname,bennie
+bennett,has_nickname,benny
 bernard,has_nickname,barney
 bernard,has_nickname,berney
 bernard,has_nickname,bernie
@@ -383,6 +397,7 @@ bertha,has_nickname,birdie
 bertram,has_nickname,bert
 bertrand,has_nickname,randy
 bess,has_nickname,bessie
+bessie,has_nickname,bess
 beth,has_nickname,betsy
 beth,has_nickname,betty
 beth,has_nickname,elizabeth
@@ -417,6 +432,7 @@ breeanna,has_nickname,bree
 brenda,has_nickname,brandy
 brian,has_nickname,bryan
 brian,has_nickname,bryant
+briana,has_nickname,bri
 brianna,has_nickname,bri
 bridget,has_nickname,biddie
 bridget,has_nickname,biddy
@@ -431,11 +447,15 @@ broderick,has_nickname,brody
 broderick,has_nickname,rick
 broderick,has_nickname,ricky
 broderick,has_nickname,rod
+brooklyn,has_nickname,brook
+brooklyn,has_nickname,brooke
 bryanna,has_nickname,ana
 bryanna,has_nickname,anna
 bryanna,has_nickname,bri
 bryanna,has_nickname,briana
 bryanna,has_nickname,brianna
+bryant,has_nickname,bry
+bryant,has_nickname,bryan
 caitlin,has_nickname,cait
 caitlin,has_nickname,caity
 caitlyn,has_nickname,cait
@@ -444,6 +464,7 @@ caldonia,has_nickname,calliedona
 caleb,has_nickname,cal
 california,has_nickname,callie
 calista,has_nickname,kissy
+callie,has_nickname,cal
 calpurnia,has_nickname,cally
 calvin,has_nickname,cal
 calvin,has_nickname,vin
@@ -451,6 +472,8 @@ calvin,has_nickname,vinny
 cameron,has_nickname,cam
 cameron,has_nickname,ron
 cameron,has_nickname,ronny
+camila,has_nickname,cami
+camila,has_nickname,mila
 camile,has_nickname,cammie
 camille,has_nickname,cammie
 camille,has_nickname,millie
@@ -495,6 +518,7 @@ cassandra,has_nickname,sandra
 cassandra,has_nickname,sandy
 cassidy,has_nickname,cass
 cassidy,has_nickname,cassie
+cassie,has_nickname,cass
 caswell,has_nickname,cass
 catherine,has_nickname,casey
 catherine,has_nickname,cassie
@@ -541,6 +565,8 @@ charlotte,has_nickname,lotta
 charlotte,has_nickname,lottie
 charlotte,has_nickname,sherry
 chauncey,has_nickname,chan
+chelsea,has_nickname,chels
+chelsea,has_nickname,chelsie
 chelsey,has_nickname,chelsie
 cheryl,has_nickname,cher
 chesley,has_nickname,chet
@@ -608,11 +634,13 @@ clifford,has_nickname,ford
 clifton,has_nickname,cliff
 clifton,has_nickname,tony
 cole,has_nickname,colie
+colton,has_nickname,colt
 columbus,has_nickname,clum
 con,has_nickname,conny
 conrad,has_nickname,con
 conrad,has_nickname,conny
 constance,has_nickname,connie
+cooper,has_nickname,coop
 cordelia,has_nickname,cordy
 cordelia,has_nickname,delia
 corey,has_nickname,coco
@@ -651,6 +679,7 @@ cyrus,has_nickname,cy
 dahl,has_nickname,dal
 dalton,has_nickname,dahl
 dalton,has_nickname,dal
+dan,has_nickname,danny
 daniel,has_nickname,dan
 daniel,has_nickname,dann
 daniel,has_nickname,danny
@@ -661,11 +690,14 @@ daphne,has_nickname,daph
 daphne,has_nickname,daphie
 darlene,has_nickname,darry
 darlene,has_nickname,lena
+dave,has_nickname,davey
 david,has_nickname,dave
 david,has_nickname,davey
 david,has_nickname,day
 daycia,has_nickname,dacia
 daycia,has_nickname,daisha
+deanna,has_nickname,dee
+deanna,has_nickname,deedee
 deanne,has_nickname,ann
 deanne,has_nickname,dee
 debbie,has_nickname,deb
@@ -714,6 +746,7 @@ demerias,has_nickname,dea
 demerias,has_nickname,maris
 demerias,has_nickname,mary
 democrates,has_nickname,mock
+denise,has_nickname,dee
 dennis,has_nickname,dennie
 dennis,has_nickname,denny
 dennison,has_nickname,dennis
@@ -747,6 +780,8 @@ dominick,has_nickname,dom
 dominick,has_nickname,nick
 dominick,has_nickname,nicky
 dominico,has_nickname,dom
+don,has_nickname,donnie
+don,has_nickname,donny
 donald,has_nickname,don
 donald,has_nickname,donnie
 donald,has_nickname,donny
@@ -774,6 +809,7 @@ dotty,has_nickname,dot
 douglas,has_nickname,doug
 drusilla,has_nickname,silla
 duncan,has_nickname,dunk
+dustin,has_nickname,dusty
 earnest,has_nickname,ernestine
 earnest,has_nickname,ernie
 ebbie,has_nickname,eb
@@ -835,6 +871,9 @@ eleanor,has_nickname,nelly
 eleanor,has_nickname,nora
 eleazer,has_nickname,lazar
 elena,has_nickname,helen
+eliana,has_nickname,ella
+eliana,has_nickname,elle
+eliana,has_nickname,ellie
 elias,has_nickname,eli
 elias,has_nickname,lee
 elias,has_nickname,lias
@@ -893,6 +932,9 @@ emeline,has_nickname,emmy
 emeline,has_nickname,milly
 emil,has_nickname,em
 emil,has_nickname,emily
+emilia,has_nickname,em
+emilia,has_nickname,emmy
+emilia,has_nickname,millie
 emily,has_nickname,em
 emily,has_nickname,emma
 emily,has_nickname,emmy
@@ -900,6 +942,8 @@ emily,has_nickname,mel
 emily,has_nickname,millie
 emma,has_nickname,em
 emma,has_nickname,emmy
+emmanuel,has_nickname,manny
+emmanuel,has_nickname,manuel
 epaphroditius,has_nickname,dite
 epaphroditius,has_nickname,ditus
 epaphroditius,has_nickname,dyce
@@ -910,6 +954,12 @@ erasmus,has_nickname,rasmus
 erasmus,has_nickname,raze
 eric,has_nickname,rick
 eric,has_nickname,ricky
+erick,has_nickname,eric
+erick,has_nickname,rick
+erick,has_nickname,ricky
+erik,has_nickname,eric
+erik,has_nickname,rick
+erik,has_nickname,ricky
 ernest,has_nickname,ernie
 ernestine,has_nickname,erna
 ernestine,has_nickname,ernest
@@ -998,12 +1048,16 @@ francine,has_nickname,franny
 francis,has_nickname,fran
 francis,has_nickname,frank
 francis,has_nickname,frankie
+frank,has_nickname,frankie
+frank,has_nickname,franky
 frankie,has_nickname,francis
 frankie,has_nickname,frank
 franklin,has_nickname,fran
 franklin,has_nickname,frank
 franklind,has_nickname,fran
 franklind,has_nickname,frank
+fred,has_nickname,freddie
+fred,has_nickname,freddy
 freda,has_nickname,frieda
 frederica,has_nickname,erica
 frederica,has_nickname,erika
@@ -1050,6 +1104,7 @@ genevieve,has_nickname,jenny
 geoffrey,has_nickname,geoff
 geoffrey,has_nickname,jeff
 george,has_nickname,georgie
+georgia,has_nickname,georgie
 georgiana,has_nickname,georgia
 georgine,has_nickname,george
 gerald,has_nickname,gerry
@@ -1072,6 +1127,8 @@ giovanni,has_nickname,gio
 glenn,has_nickname,glen
 gloria,has_nickname,glory
 governor,has_nickname,govie
+grace,has_nickname,gracie
+grayson,has_nickname,gray
 greenberry,has_nickname,berry
 greenberry,has_nickname,green
 greggory,has_nickname,gregg
@@ -1222,6 +1279,7 @@ isaiah,has_nickname,zay
 isidore,has_nickname,izzy
 iva,has_nickname,ivy
 ivan,has_nickname,john
+jack,has_nickname,jackie
 jackson,has_nickname,jack
 jacob,has_nickname,jaap
 jacob,has_nickname,jake
@@ -1263,6 +1321,11 @@ janet,has_nickname,jan
 janet,has_nickname,jessie
 janice,has_nickname,jan
 jannett,has_nickname,nettie
+jasmine,has_nickname,jas
+jasmine,has_nickname,jazz
+jasmine,has_nickname,jazzy
+jason,has_nickname,jase
+jason,has_nickname,jay
 jasper,has_nickname,casper
 jasper,has_nickname,jap
 jayme,has_nickname,jay
@@ -1294,6 +1357,8 @@ jemima,has_nickname,mima
 jennet,has_nickname,jenn
 jennet,has_nickname,jenny
 jennet,has_nickname,jessie
+jennie,has_nickname,jen
+jennie,has_nickname,jenny
 jennifer,has_nickname,jen
 jennifer,has_nickname,jenn
 jennifer,has_nickname,jenni
@@ -1308,6 +1373,7 @@ jerry,has_nickname,geraldine
 jerry,has_nickname,geri
 jerry,has_nickname,gerry
 jerry,has_nickname,jereme
+jesse,has_nickname,jess
 jessica,has_nickname,jess
 jessica,has_nickname,jessie
 jessie,has_nickname,jane
@@ -1315,6 +1381,8 @@ jessie,has_nickname,janet
 jessie,has_nickname,jess
 jillian,has_nickname,jill
 jim,has_nickname,jimmie
+jimmie,has_nickname,jim
+jimmie,has_nickname,jimmy
 jincy,has_nickname,jane
 jinsy,has_nickname,jane
 joan,has_nickname,jo
@@ -1326,8 +1394,11 @@ joanna,has_nickname,joan
 joanna,has_nickname,jodi
 joanna,has_nickname,jody
 joanne,has_nickname,jo
+jocelyn,has_nickname,jo
+jocelyn,has_nickname,joss
 jody,has_nickname,jo
 joe,has_nickname,joey
+joey,has_nickname,joe
 johann,has_nickname,john
 johanna,has_nickname,jo
 johannah,has_nickname,hannah
@@ -1383,6 +1454,7 @@ jonathon,has_nickname,jon
 jonathon,has_nickname,jonathan
 jonathon,has_nickname,jonnie
 jonathon,has_nickname,jonny
+jordan,has_nickname,jordy
 joseph,has_nickname,jody
 joseph,has_nickname,joe
 joseph,has_nickname,joey
@@ -1457,6 +1529,7 @@ katherine,has_nickname,cassie
 katherine,has_nickname,cathy
 katherine,has_nickname,kate
 katherine,has_nickname,kathy
+katherine,has_nickname,katie
 katherine,has_nickname,katy
 katherine,has_nickname,kay
 katherine,has_nickname,kaye
@@ -1495,6 +1568,8 @@ kendrick,has_nickname,ken
 kendrick,has_nickname,kenny
 kendrik,has_nickname,ken
 kendrik,has_nickname,kenny
+kennedy,has_nickname,ken
+kennedy,has_nickname,kenny
 kenneth,has_nickname,ken
 kenneth,has_nickname,kendrick
 kenneth,has_nickname,kenny
@@ -1507,6 +1582,7 @@ kerry,has_nickname,kerri
 kevin,has_nickname,kev
 keziah,has_nickname,kizza
 keziah,has_nickname,kizzie
+kim,has_nickname,kimmy
 kimberley,has_nickname,kim
 kimberley,has_nickname,kimberli
 kimberley,has_nickname,kimberly
@@ -1520,6 +1596,10 @@ kris,has_nickname,chris
 kristel,has_nickname,kris
 kristen,has_nickname,chris
 kristin,has_nickname,chris
+kristina,has_nickname,christina
+kristina,has_nickname,kris
+kristina,has_nickname,krissy
+kristina,has_nickname,tina
 kristine,has_nickname,chris
 kristine,has_nickname,christy
 kristine,has_nickname,crissy
@@ -1543,6 +1623,8 @@ larry,has_nickname,laurence
 larry,has_nickname,lawrence
 latisha,has_nickname,tish
 latisha,has_nickname,tisha
+laura,has_nickname,laurie
+laura,has_nickname,lori
 laurel,has_nickname,laurie
 lauren,has_nickname,laurie
 lauren,has_nickname,ren
@@ -1609,10 +1691,14 @@ letitia,has_nickname,titia
 levi,has_nickname,lee
 levicy,has_nickname,vicy
 levone,has_nickname,von
+lexi,has_nickname,lex
 lib,has_nickname,libby
 lidia,has_nickname,lyddy
 lil,has_nickname,lilly
 lil,has_nickname,lily
+liliana,has_nickname,lil
+liliana,has_nickname,lilly
+liliana,has_nickname,lily
 lillah,has_nickname,lil
 lillah,has_nickname,lilly
 lillah,has_nickname,lily
@@ -1622,6 +1708,8 @@ lillian,has_nickname,lilly
 lillian,has_nickname,lolly
 lilly,has_nickname,lil
 lilly,has_nickname,lily
+lily,has_nickname,lil
+lily,has_nickname,lilly
 lincoln,has_nickname,link
 linda,has_nickname,lindy
 linda,has_nickname,lynn
@@ -1759,6 +1847,7 @@ margaret,has_nickname,meg
 margaret,has_nickname,midge
 margaret,has_nickname,peg
 margaret,has_nickname,peggy
+margaret,has_nickname,polly
 margaret,has_nickname,rita
 margaretta,has_nickname,daisy
 margaretta,has_nickname,gretta
@@ -1790,6 +1879,8 @@ marge,has_nickname,margaretta
 marge,has_nickname,margery
 margie,has_nickname,marjorie
 marguerite,has_nickname,peggy
+maria,has_nickname,mia
+maria,has_nickname,ria
 mariah,has_nickname,maria
 mariah,has_nickname,mary
 marian,has_nickname,marianna
@@ -1847,6 +1938,7 @@ matilda,has_nickname,matty
 matilda,has_nickname,maud
 matilda,has_nickname,tilla
 matilda,has_nickname,tilly
+matt,has_nickname,matty
 matthew,has_nickname,matt
 matthew,has_nickname,mattie
 matthew,has_nickname,matty
@@ -1863,6 +1955,7 @@ maureen,has_nickname,mary
 maurice,has_nickname,morey
 mavery,has_nickname,mave
 mavine,has_nickname,mave
+max,has_nickname,maxie
 maximilian,has_nickname,max
 maximillian,has_nickname,max
 maxine,has_nickname,max
@@ -1911,6 +2004,11 @@ michael,has_nickname,mikey
 micheal,has_nickname,mike
 micheal,has_nickname,mikey
 micheal,has_nickname,miky
+michele,has_nickname,chelle
+michele,has_nickname,mickey
+michele,has_nickname,shelley
+michele,has_nickname,shellie
+michele,has_nickname,shelly
 michelle,has_nickname,chelle
 michelle,has_nickname,mickey
 michelle,has_nickname,shelley
@@ -1954,6 +2052,7 @@ mitzie,has_nickname,mitty
 monet,has_nickname,nettie
 monica,has_nickname,monna
 monica,has_nickname,monnie
+monte,has_nickname,monty
 monteleon,has_nickname,monte
 montesque,has_nickname,monty
 montgomery,has_nickname,gum
@@ -1977,6 +2076,8 @@ naomi,has_nickname,omi
 napoleon,has_nickname,leon
 napoleon,has_nickname,nap
 napoleon,has_nickname,nappy
+natalia,has_nickname,nat
+natalia,has_nickname,talia
 natalie,has_nickname,natty
 natalie,has_nickname,nettie
 natasha,has_nickname,nat
@@ -1989,6 +2090,7 @@ nathaniel,has_nickname,nathan
 nathaniel,has_nickname,natty
 nathaniel,has_nickname,than
 nelle,has_nickname,nelly
+nellie,has_nickname,nell
 nelson,has_nickname,nels
 newt,has_nickname,newton
 newton,has_nickname,newt
@@ -1999,6 +2101,10 @@ nicholas,has_nickname,nick
 nicholas,has_nickname,nickie
 nicholas,has_nickname,nicky
 nicholas,has_nickname,nico
+nichole,has_nickname,cole
+nichole,has_nickname,nicki
+nichole,has_nickname,nicky
+nichole,has_nickname,nikki
 nicholette,has_nickname,cole
 nicholette,has_nickname,nichole
 nicholette,has_nickname,nickey
@@ -2113,6 +2219,7 @@ permelia,has_nickname,milly
 pernetta,has_nickname,nettie
 persephone,has_nickname,seph
 persephone,has_nickname,sephy
+pete,has_nickname,petey
 peter,has_nickname,pate
 peter,has_nickname,pete
 petronella,has_nickname,nellie
@@ -2136,6 +2243,7 @@ phillip,has_nickname,pip
 philly,has_nickname,delphia
 philomena,has_nickname,menaalmena
 phoebe,has_nickname,fifi
+phyllis,has_nickname,phyl
 pinckney,has_nickname,pink
 pleasant,has_nickname,ples
 pocahontas,has_nickname,pokey
@@ -2150,6 +2258,7 @@ providence,has_nickname,provy
 prudence,has_nickname,prudy
 prudence,has_nickname,prue
 prudy,has_nickname,prudence
+rachael,has_nickname,rach
 rachel,has_nickname,rachael
 rachel,has_nickname,shelly
 rafaela,has_nickname,rafa
@@ -2216,6 +2325,8 @@ roberta,has_nickname,bobbie
 roberta,has_nickname,robbie
 roberta,has_nickname,roby
 roberto,has_nickname,rob
+robin,has_nickname,rob
+robin,has_nickname,robbie
 roderick,has_nickname,erick
 roderick,has_nickname,rickie
 roderick,has_nickname,rod
@@ -2273,6 +2384,8 @@ roseanna,has_nickname,rose
 roseanna,has_nickname,rosie
 roseanna,has_nickname,roz
 roseanne,has_nickname,ann
+rosemarie,has_nickname,rose
+rosemarie,has_nickname,rosie
 rosemary,has_nickname,marie
 rosemary,has_nickname,mary
 rosemary,has_nickname,rose
@@ -2297,6 +2410,7 @@ rudolphus,has_nickname,rolf
 rudolphus,has_nickname,rudy
 russell,has_nickname,russ
 russell,has_nickname,rusty
+ruth,has_nickname,ruthie
 ryan,has_nickname,ry
 sabrina,has_nickname,brina
 safieel,has_nickname,safie
@@ -2383,6 +2497,8 @@ simon,has_nickname,si
 simon,has_nickname,sion
 smith,has_nickname,smitty
 socrates,has_nickname,crate
+sofia,has_nickname,sofie
+sofia,has_nickname,sophie
 solomon,has_nickname,sal
 solomon,has_nickname,salmon
 solomon,has_nickname,saul
@@ -2402,6 +2518,7 @@ stacie,has_nickname,stacey
 stacie,has_nickname,staci
 stacie,has_nickname,stacy
 stacy,has_nickname,staci
+stanley,has_nickname,stan
 stephan,has_nickname,steve
 stephanie,has_nickname,annie
 stephanie,has_nickname,steffi
@@ -2414,6 +2531,7 @@ stephanie,has_nickname,stephine
 stephanie,has_nickname,stevie
 stephen,has_nickname,steph
 stephen,has_nickname,steve
+steve,has_nickname,stevie
 steven,has_nickname,steph
 steven,has_nickname,steve
 steven,has_nickname,stevie
@@ -2446,8 +2564,13 @@ sylvester,has_nickname,syl
 sylvester,has_nickname,vessie
 sylvester,has_nickname,vester
 sylvester,has_nickname,vet
+sylvia,has_nickname,syl
+sylvia,has_nickname,sylvie
 tabby,has_nickname,tabitha
 tabitha,has_nickname,tabby
+tamara,has_nickname,tami
+tamara,has_nickname,tammie
+tamara,has_nickname,tammy
 tamarra,has_nickname,tammy
 tammie,has_nickname,tami
 tammie,has_nickname,tammy
@@ -2512,13 +2635,22 @@ tobias,has_nickname,toby
 tom,has_nickname,thomas
 tom,has_nickname,tommy
 tony,has_nickname,anthony
+tonya,has_nickname,toni
+tracey,has_nickname,traci
+tracey,has_nickname,tracie
+tracey,has_nickname,tracy
 tranquilla,has_nickname,quilla
 tranquilla,has_nickname,trannie
+travis,has_nickname,trav
+trevor,has_nickname,trev
+tricia,has_nickname,trish
 trish,has_nickname,patricia
 trish,has_nickname,trisha
+tristan,has_nickname,tris
 trix,has_nickname,trixie
 trudy,has_nickname,gertrude
 tryphena,has_nickname,phena
+tyler,has_nickname,ty
 unice,has_nickname,eunice
 unice,has_nickname,nicie
 uriah,has_nickname,riah
@@ -2530,6 +2662,7 @@ valentina,has_nickname,vallie
 valentine,has_nickname,felty
 valeri,has_nickname,val
 valeri,has_nickname,valerie
+valeria,has_nickname,val
 valerie,has_nickname,val
 vanburen,has_nickname,buren
 vandalia,has_nickname,vannie
@@ -2537,6 +2670,7 @@ vanessa,has_nickname,essa
 vanessa,has_nickname,nessa
 vanessa,has_nickname,vanna
 vernisee,has_nickname,nicey
+vernon,has_nickname,vern
 veronica,has_nickname,franky
 veronica,has_nickname,frony
 veronica,has_nickname,ron
@@ -2579,6 +2713,7 @@ vinson,has_nickname,vinnie
 vinson,has_nickname,vinny
 viola,has_nickname,ola
 viola,has_nickname,vi
+violet,has_nickname,vi
 violetta,has_nickname,lettie
 virginia,has_nickname,ginger
 virginia,has_nickname,ginny
@@ -2600,6 +2735,7 @@ wesley,has_nickname,wes
 westley,has_nickname,farmboy
 westley,has_nickname,wes
 westley,has_nickname,west
+weston,has_nickname,wes
 wilber,has_nickname,bert
 wilber,has_nickname,will
 wilbur,has_nickname,will
